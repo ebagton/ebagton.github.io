@@ -45,6 +45,7 @@ body{
   letter-spacing:.18em;text-transform:uppercase;
   color:var(--ink-soft);
 }
+.eyebrow b{color:var(--blue);font-weight:700}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 
@@ -100,13 +101,19 @@ a{color:inherit}
   display:flex;justify-content:space-between;align-items:center;
   gap:16px;padding:11px var(--pad);
 }
-.topbar nav{display:flex;gap:20px;flex-wrap:wrap}
+.topbar nav{display:flex;gap:clamp(12px,1.8vw,24px);flex-wrap:wrap}
 .topbar a{
   font-family:"JetBrains Mono",monospace;font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
   padding-bottom:2px;border-bottom:2px solid transparent;
+  white-space:nowrap;
 }
+.topbar a .n{color:var(--blue);font-weight:700;margin-right:6px}
 .topbar a:hover{border-bottom-color:var(--red)}
+@media (max-width:620px){
+  .topbar a .n{display:none}
+  .topbar nav{gap:14px}
+}
 
 /* ---------- hero ---------- */
 .hero{padding:clamp(48px,9vw,110px) var(--pad) 0;position:relative;overflow:hidden}
@@ -171,7 +178,7 @@ h1 .hl{color:var(--blue)}
 .plate .nm{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
 .plate .sub{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-top:3px}
 
-/* ---------- pacenote ticker (signature) ---------- */
+/* ---------- index ticker (signature) ---------- */
 .ticker{
   margin-top:clamp(44px,7vw,86px);
   border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
@@ -261,8 +268,8 @@ h2{
   border:1px solid var(--line);padding:5px 9px;white-space:nowrap;
 }
 
-/* crew (clubs + volunteer) */
-#crew{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* activities (clubs + volunteer) */
+#activities{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:clamp(16px,2.4vw,26px)}
 .crew-card{background:var(--paper);border:1px solid var(--line);padding:24px 22px 26px;position:relative}
 .crew-card::before{content:"";position:absolute;top:-1px;left:-1px;width:22px;height:22px;border-top:3px solid var(--blue);border-left:3px solid var(--blue)}
@@ -271,7 +278,7 @@ h2{
 .crew-card .role{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
 .crew-card p{font-size:14.5px;color:#2F343B}
 
-/* pit box (toolkit) */
+/* skills toolkit */
 .tool-group{margin-bottom:clamp(26px,3.2vw,36px)}
 .tool-group:last-child{margin-bottom:0}
 .tool-group .gl{
@@ -288,7 +295,7 @@ h2{
 }
 
 /* lanes */
-#lanes{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#channel{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:clamp(16px,2.4vw,26px)}
 .lane{background:var(--paper);border:1px solid var(--line);padding:24px 22px 26px;position:relative}
 .lane::before{content:"";position:absolute;inset:0 0 auto 0;height:7px}
@@ -304,7 +311,7 @@ h2{
 .stat div span{display:block;font-family:"Archivo Black",sans-serif;font-size:clamp(1.6rem,4vw,2.5rem);letter-spacing:-.03em}
 .stat div small{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* service park */
+/* contact */
 #contact{background:var(--ink);color:var(--paper-2)}
 #contact .eyebrow{color:#8E948C}
 #contact h2{color:#fff}
@@ -364,11 +371,11 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   <div class="row">
     <span class="eyebrow">Gabe / Mechanical Engineering</span>
     <nav>
-      <a href="#itinerary">Itinerary</a>
-      <a href="#crew">Crew</a>
-      <a href="#toolkit">Pit Box</a>
-      <a href="#lanes">Lane 3</a>
-      <a href="#contact">Service Park</a>
+      <a href="#experience"><span class="n">01</span>Experience</a>
+      <a href="#activities"><span class="n">02</span>Activities</a>
+      <a href="#skills"><span class="n">03</span>Skills</a>
+      <a href="#channel"><span class="n">04</span>Channel</a>
+      <a href="#contact"><span class="n">05</span>Contact</a>
     </nav>
   </div>
 </header>
@@ -377,9 +384,9 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
 <div class="hero">
   <div class="hero-grid">
     <div>
-      <p class="eyebrow">Storrs, CT → Quonset Point, RI → wherever the stage goes</p>
-      <h1>Builds boats.<br>Wants to build<br><span class="hl">rally cars.</span></h1>
-      <p class="lede">I'm Gabe, a mechanical engineer driven to work on projects that challenge me. I run UConn's Electric Boat Racing Club, spend my summers on submarines at General Dynamics Electric Boat, and film the process. A boat and a rally car fight the same things: drag, weight, heat.</p>
+      <p class="eyebrow">Storrs, CT → Quonset Point, RI → wherever the build is</p>
+      <h1>Engineering<br>without the<br><span class="hl">paywall.</span></h1>
+      <p class="lede">I'm Gabe, a mechanical engineer at UConn. I run the Electric Boat Racing Club so students get shop time, tools, and a real build to put their name on without paying extra for it. I spend my summers on submarines at General Dynamics Electric Boat, and I'm aiming at motorsport after that.</p>
       <div class="creds">
         <span class="tag">UConn ME, Class of 2028</span>
         <span class="tag">Google AI Essentials</span>
@@ -407,7 +414,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     </div>
   </div>
 
-  <div class="ticker" aria-label="Pacenotes">
+  <div class="ticker" aria-label="Project index">
     <div class="ticker-track">
       <span>Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite layup<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>Copper<b>·</b>President, EBRC<b>·</b>armorer<b>·</b>Lane 3<b>·</b>Class of 2028<b>·</b>&nbsp;</span>
       <span aria-hidden="true">Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite layup<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>Copper<b>·</b>President, EBRC<b>·</b>armorer<b>·</b>Lane 3<b>·</b>Class of 2028<b>·</b>&nbsp;</span>
@@ -444,11 +451,11 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   </div>
 </div>
 
-<section id="itinerary">
+<section id="experience">
   <div class="wrap">
-    <p class="eyebrow">Itinerary</p>
+    <p class="eyebrow"><b>Sheet 01</b> / Experience</p>
     <div class="rule-dim" aria-hidden="true"></div>
-    <h2>The stages so far</h2>
+    <h2>The work so far</h2>
     <p class="sec-note">The roles I've held and the things I've built, in order.</p>
 
     <div class="stage rv">
@@ -530,11 +537,11 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   </div>
 </section>
 
-<section id="crew">
+<section id="activities">
   <div class="wrap">
-    <p class="eyebrow">Crew</p>
+    <p class="eyebrow"><b>Sheet 02</b> / Activities</p>
     <div class="rule-dim" aria-hidden="true"></div>
-    <h2>Between the stages</h2>
+    <h2>Clubs and volunteering</h2>
     <p class="sec-note">The clubs I'm in and the events I volunteer at.</p>
     <div class="crew">
       <div class="crew-card rv">
@@ -565,9 +572,9 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   </div>
 </section>
 
-<section id="toolkit">
+<section id="skills">
   <div class="wrap">
-    <p class="eyebrow">Pit Box</p>
+    <p class="eyebrow"><b>Sheet 03</b> / Skills</p>
     <div class="rule-dim" aria-hidden="true"></div>
     <h2>What's in the toolkit</h2>
     <p class="sec-note">Design software, shop tools, the video kit, and what I bring to a team.</p>
@@ -619,15 +626,15 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   </div>
 </section>
 
-<section id="lanes">
+<section id="channel">
   <div class="wrap">
-    <p class="eyebrow">Lane 3</p>
+    <p class="eyebrow"><b>Sheet 04</b> / Channel</p>
     <div class="rule-dim" aria-hidden="true"></div>
     <h2>Three lanes, one channel</h2>
     <p class="sec-note">I sort what I make into three lanes. It keeps the channel from turning into noise.</p>
     <div class="lanes">
       <div class="lane rv"><div class="n">Lane 01</div><h4>Story</h4><p>Reflection pieces on what I expected and what happened instead.</p></div>
-      <div class="lane rv"><div class="n">Lane 02</div><h4>Adventure</h4><p>Trips and stages, camera running when the plan falls apart.</p></div>
+      <div class="lane rv"><div class="n">Lane 02</div><h4>Adventure</h4><p>Trips and races, camera running when the plan falls apart.</p></div>
       <div class="lane rv"><div class="n">Lane 03</div><h4>Build</h4><p>Process and engineering, the lane the channel is named after.</p></div>
     </div>
     <div class="stat rv">
@@ -640,7 +647,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
 
 <section id="contact">
   <div class="wrap">
-    <p class="eyebrow">Service Park</p>
+    <p class="eyebrow"><b>Sheet 05</b> / Contact</p>
     <div class="rule-dim" aria-hidden="true"></div>
     <h2>Open to motorsport<br>and automotive roles</h2>
     <p>I'm looking for internships and full-time work in vehicle dynamics, powertrain, or motorsport engineering. I'm also open to sponsor conversations for the ASNE hydroplane build. Email reaches me fastest.</p>
