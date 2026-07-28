@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gabe — Mechanical Engineering / Lane 3</title>
+<meta name="description" content="Gabriel Bartlett — mechanical engineering at UConn. President of the Electric Boat Racing Club, engineering intern at General Dynamics Electric Boat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -125,7 +126,12 @@ h1 .hl{color:var(--blue)}
   max-width:46ch;font-size:clamp(16px,2vw,19px);color:#2A2E36;
 }
 .hero .eyebrow{margin-bottom:clamp(18px,3vw,28px)}
-.creds{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.creds{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.creds .tag{
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-soft);
+  border:1px solid var(--line);background:var(--paper-2);padding:6px 11px;
+}
 
 /* side column: photo + plate */
 .side{display:flex;flex-direction:column;align-items:flex-end;gap:20px}
@@ -181,6 +187,22 @@ h1 .hl{color:var(--blue)}
 .ticker-track b{color:var(--red);font-weight:700;padding:0 18px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+/* ---------- drawing note callout ---------- */
+.note-wrap{padding:clamp(44px,6vw,76px) var(--pad) 0}
+.note-block{
+  max-width:1400px;margin:0 auto;position:relative;
+  border:1.5px solid var(--blue);background:var(--paper-2);
+  padding:clamp(26px,3.4vw,36px) clamp(22px,3vw,34px) clamp(24px,3.2vw,32px);
+}
+.note-block .lbl{
+  position:absolute;top:-8px;left:22px;background:var(--paper-2);
+  padding:0 9px;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700;
+}
+.note-block p{font-size:clamp(16px,1.9vw,18.5px);max-width:68ch;color:#2A2E36}
+.note-block p + p{margin-top:14px}
+.note-block b{color:var(--blue);font-weight:600}
+
 /* ---------- sections ---------- */
 section{padding:clamp(56px,8vw,104px) var(--pad)}
 .wrap{max-width:1400px;margin:0 auto}
@@ -219,14 +241,36 @@ h2{
   border:1px solid var(--line);padding:5px 9px;white-space:nowrap;
 }
 
+/* crew (clubs + volunteer) */
+#crew{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:clamp(16px,2.4vw,26px)}
+.crew-card{background:var(--paper);border:1px solid var(--line);padding:24px 22px 26px;position:relative}
+.crew-card::before{content:"";position:absolute;top:-1px;left:-1px;width:22px;height:22px;border-top:3px solid var(--blue);border-left:3px solid var(--blue)}
+.crew-card .n{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px}
+.crew-card h4{font-family:"Archivo Black",sans-serif;font-size:1.02rem;text-transform:uppercase;letter-spacing:-.015em;line-height:1.1;margin-bottom:7px}
+.crew-card .role{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.crew-card p{font-size:14.5px;color:#2F343B}
+
 /* pit box (toolkit) */
-#toolkit{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tool-group{margin-bottom:clamp(26px,3.2vw,36px)}
+.tool-group:last-child{margin-bottom:0}
+.tool-group .gl{
+  display:flex;align-items:center;gap:12px;margin-bottom:13px;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--blue);
+}
+.tool-group .gl::after{content:"";flex:1;height:1px;background:var(--line)}
 .tools{display:flex;flex-wrap:wrap;gap:10px}
-.tools .tag{background:var(--paper);font-size:11px;padding:7px 12px}
+.tools .tag{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-soft);
+  background:var(--paper-2);border:1px solid var(--line);padding:7px 12px;
+}
 
 /* lanes */
+#lanes{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:clamp(16px,2.4vw,26px)}
-.lane{background:var(--paper-2);border:1px solid var(--line);padding:24px 22px 26px;position:relative}
+.lane{background:var(--paper);border:1px solid var(--line);padding:24px 22px 26px;position:relative}
 .lane::before{content:"";position:absolute;inset:0 0 auto 0;height:7px}
 .lane:nth-child(1)::before{background:var(--sky)}
 .lane:nth-child(2)::before{background:var(--blue)}
@@ -301,6 +345,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     <span class="eyebrow">Gabe — Mechanical Engineering</span>
     <nav>
       <a href="#itinerary">Itinerary</a>
+      <a href="#crew">Crew</a>
       <a href="#toolkit">Pit Box</a>
       <a href="#lanes">Lane 3</a>
       <a href="#contact">Service Park</a>
@@ -314,10 +359,10 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     <div>
       <p class="eyebrow">Storrs, CT → Quonset Point, RI → wherever the stage goes</p>
       <h1>Builds boats.<br>Wants to build<br><span class="hl">rally cars.</span></h1>
-      <p class="lede">Mechanical engineering at UConn, chasing sustainable technology that actually lasts. I lead the Electric Boat Racing Club, work on submarines at General Dynamics Electric Boat, and film every bit of it. Composites, electric powertrains, CFD — same problems, different surface.</p>
+      <p class="lede">I'm Gabe — a mechanical engineer drawn to projects that challenge me. I run UConn's Electric Boat Racing Club, intern on submarines at General Dynamics Electric Boat, and film the whole process. Boats and cars have more in common than people think: both are fights against drag, weight, and heat.</p>
       <div class="creds">
-        <span class="tag">Google AI Essentials Specialization</span>
-        <span class="tag">Boating License</span>
+        <span class="tag">UConn ME, Class of 2028</span>
+        <span class="tag">Google AI Essentials</span>
         <span class="tag">AED / CPR / First Aid</span>
       </div>
     </div>
@@ -335,7 +380,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
           <div class="num">03</div>
           <div class="rule"></div>
           <div class="nm">Gabe</div>
-          <div class="sub">UConn ME</div>
+          <div class="sub">UConn ME '28</div>
         </div>
         <p class="fig-cap">Fig. 02 — Spec plate</p>
       </div>
@@ -344,9 +389,17 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
 
   <div class="ticker" aria-label="Pacenotes">
     <div class="ticker-track">
-      <span>Seadog II<b>·</b>Big Dawg I<b>·</b>composite hull<b>·</b>electric powertrain<b>·</b>Quonset Point<b>·</b>CFD<b>·</b>400k views<b>·</b>DEMO Day ECE 1st place<b>·</b>1998 Jeep XJ<b>·</b>President, EBRC<b>·</b>Lane 3<b>·</b>launch driver, Ensign Nationals<b>·</b>&nbsp;</span>
-      <span aria-hidden="true">Seadog II<b>·</b>Big Dawg I<b>·</b>composite hull<b>·</b>electric powertrain<b>·</b>Quonset Point<b>·</b>CFD<b>·</b>400k views<b>·</b>DEMO Day ECE 1st place<b>·</b>1998 Jeep XJ<b>·</b>President, EBRC<b>·</b>Lane 3<b>·</b>launch driver, Ensign Nationals<b>·</b>&nbsp;</span>
+      <span>Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite hull<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>400k views<b>·</b>1998 Jeep XJ<b>·</b>President, EBRC<b>·</b>Lane 3<b>·</b>launch driver, Ensign Nationals<b>·</b>&nbsp;</span>
+      <span aria-hidden="true">Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite hull<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>400k views<b>·</b>1998 Jeep XJ<b>·</b>President, EBRC<b>·</b>Lane 3<b>·</b>launch driver, Ensign Nationals<b>·</b>&nbsp;</span>
     </div>
+  </div>
+</div>
+
+<div class="note-wrap">
+  <div class="note-block rv">
+    <span class="lbl">Note 01 — Current build</span>
+    <p>We're building an <b>electric hydroplane</b> for the American Society of Naval Engineers' <b>Promoting Electric Propulsion</b> competition — a race built to accelerate electric propulsion research in an industry that still runs almost entirely on gas.</p>
+    <p>The bigger project is the club itself: making it a place where students can come together and build their careers without paying for extra engineering class or shop time.</p>
   </div>
 </div>
 
@@ -363,24 +416,57 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
       <div class="body">
         <h3>Electric Boat Racing Club</h3>
         <div class="role">President</div>
-        <p>Elected president at the end of the 2026 season after leading hull design on "Big Dawg I" and helping design, prep, and paint "Seadog II" — 1st place at UConn's DEMO Day ECE, 2025. Now steering the club, affiliated with the American Society of Naval Engineers, into the 2027 build: hull design, composite layups, and electric powertrain integration.</p>
+        <p>Elected after working up through the design team and a term as secretary — improving the boat's aerodynamics, leading hull design on "Big Dawg I," and designing, prepping, and painting "Seadog II," which took 1st place at UConn's ECE DEMO Day in 2025 alongside senior engineers. Now running the club and its ASNE electric hydroplane program.</p>
       </div>
       <div class="tag">Composites / Powertrain</div>
     </div>
 
     <div class="stage rv">
       <div class="no">02</div>
-      <div class="yr">Current</div>
+      <div class="yr">Summer</div>
       <div class="body">
         <h3>General Dynamics Electric Boat</h3>
         <div class="role">Engineering Intern — Quonset Point, RI</div>
-        <p>Managing delivery and preventative maintenance scheduling for the industrial gas systems that keep Class 1 submarine production running, and working with senior engineers to clear the roadblocks that halt the line. Building the working knowledge it takes to scale defense manufacturing into new buildings.</p>
+        <p>Managing delivery and preventative maintenance scheduling for the industrial gas systems critical to continuous Class 1 submarine production. Working with senior engineers to solve the system roadblocks that halt production, and building the knowledge it takes to scale industrial defense manufacturing into more buildings.</p>
       </div>
       <div class="tag">Marine / Manufacturing</div>
     </div>
 
     <div class="stage rv">
       <div class="no">03</div>
+      <div class="yr">2026 — now</div>
+      <div class="body">
+        <h3>UConn Ideation Studio</h3>
+        <div class="role">Studio Assistant, College of Engineering</div>
+        <p>Maintaining and organizing the collaborative shop where students build their engineering projects, and helping them actually get useful results out of the 3D printers and laser cutters.</p>
+      </div>
+      <div class="tag">Fabrication / Teaching</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">04</div>
+      <div class="yr">2024 — 2026</div>
+      <div class="body">
+        <h3>UConn College of Engineering</h3>
+        <div class="role">Facilities Maintenance Assistant</div>
+        <p>Coordinated with faculty and staff to close out work orders across the college — anything from moving offices and furniture to surplusing technology for recycling — and led a small team of students to and from jobsites.</p>
+      </div>
+      <div class="tag">Ops / Team lead</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">05</div>
+      <div class="yr">2024 — 2026</div>
+      <div class="body">
+        <h3>Weekend of Welcome</h3>
+        <div class="role">Captain, UConn Student Activities</div>
+        <p>Worked with Student Activities staff to find, interview, hire, and train almost 100 employees for the program that greets incoming first-years and makes the jump from high school to college a little less stressful.</p>
+      </div>
+      <div class="tag">Leadership / Hiring</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">06</div>
       <div class="yr">2024 — 2026</div>
       <div class="body">
         <h3>Niantic Bay Yacht Club</h3>
@@ -391,51 +477,29 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     </div>
 
     <div class="stage rv">
-      <div class="no">04</div>
-      <div class="yr">2024 — 2026</div>
-      <div class="body">
-        <h3>Weekend of Welcome</h3>
-        <div class="role">Captain, UConn Student Activities</div>
-        <p>Found, interviewed, hired, and trained nearly 100 student leaders for UConn's Weekend of Welcome — the program that gets incoming first-years through their first week on campus.</p>
-      </div>
-      <div class="tag">Leadership / Ops</div>
-    </div>
-
-    <div class="stage rv">
-      <div class="no">05</div>
+      <div class="no">07</div>
       <div class="yr">2020 — now</div>
       <div class="body">
         <h3>Lane 3</h3>
         <div class="role">Editor &amp; Manager — 400k+ views</div>
-        <p>Six years editing and managing YouTube, Shorts, Reels, and TikTok across multiple channels. A build-and-process channel plus a rally-focused Shorts feed — I explain the engineering I'd want explained to me: anti-lag, diff behavior, why a car does what it does when the surface stops cooperating.</p>
+        <p>Six years editing and managing YouTube, Shorts, Reels, and TikTok. I document my engineering processes — and through that storytelling, try to create the moment where someone else starts building the thing they're passionate about.</p>
       </div>
-      <div class="tag">Video / Technical writing</div>
+      <div class="tag">Video / Storytelling</div>
     </div>
 
     <div class="stage rv">
-      <div class="no">06</div>
-      <div class="yr">2026 — now</div>
-      <div class="body">
-        <h3>UConn Ideation Studio</h3>
-        <div class="role">Studio Assistant &amp; Engineering Ambassador</div>
-        <p>Running the shop for other students — machining, 3D printing, laser cutting, prototyping. Also leads UConn Bound campus tours as an Engineering Ambassador, the tours that convince the next batch to come here.</p>
-      </div>
-      <div class="tag">Fabrication / Teaching</div>
-    </div>
-
-    <div class="stage rv">
-      <div class="no">07</div>
+      <div class="no">08</div>
       <div class="yr">Ongoing</div>
       <div class="body">
         <h3>Copper</h3>
         <div class="role">Owner / Builder — Robot Study Assistant</div>
-        <p>Building a small cat-shaped robot that keeps you on task while studying. Hands-on with electronic components and 3D-printed parts designed in SolidWorks, working up to a custom battery pack.</p>
+        <p>A small cat robot that keeps you on task while studying. The point is hands-on time with electronic components and SolidWorks design for 3D printing — eventually working up to a small-scale custom battery.</p>
       </div>
       <div class="tag">Personal build</div>
     </div>
 
     <div class="stage rv">
-      <div class="no">08</div>
+      <div class="no">09</div>
       <div class="yr">Ongoing</div>
       <div class="body">
         <h3>1998 Jeep Cherokee XJ</h3>
@@ -447,26 +511,92 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   </div>
 </section>
 
+<section id="crew">
+  <div class="wrap">
+    <p class="eyebrow">Crew</p>
+    <div class="rule-dim" aria-hidden="true"></div>
+    <h2>Between the stages</h2>
+    <p class="sec-note">Clubs and volunteer work — the stuff that doesn't fit in a job title.</p>
+    <div class="crew">
+      <div class="crew-card rv">
+        <div class="n">Club 01</div>
+        <h4>UConn Fencing Club</h4>
+        <div class="role">Armorer</div>
+        <p>Fixing weapons and body cords for the fencing team. Broken gear is just a repair job with a deadline attached.</p>
+      </div>
+      <div class="crew-card rv">
+        <div class="n">Club 02</div>
+        <h4>UConn Outing Club</h4>
+        <div class="role">Member</div>
+        <p>Team player on outing trips — the other half of what makes a campus worth being on.</p>
+      </div>
+      <div class="crew-card rv">
+        <div class="n">Volunteer 01</div>
+        <h4>Engineering Ambassadors</h4>
+        <div class="role">UConn Bound Tour Guide, 2025 / 26</div>
+        <p>Leading engineering tours around campus, answering with knowledgeable and curated information to best help whoever's on the tour.</p>
+      </div>
+      <div class="crew-card rv">
+        <div class="n">Volunteer 02</div>
+        <h4>National Science Bowl</h4>
+        <div class="role">Scorekeeper / Timekeeper, 2025 / 26</div>
+        <p>A few days a year setting up, judging, and breaking down the Vergnano Institute for Inclusion's school-vs-school STEM trivia bowl for middle and high schoolers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="toolkit">
   <div class="wrap">
     <p class="eyebrow">Pit Box</p>
     <div class="rule-dim" aria-hidden="true"></div>
     <h2>What's in the toolkit</h2>
-    <p class="sec-note">Design software, shop tools, and the video kit that keeps Lane 3 running.</p>
-    <div class="tools">
-      <span class="tag">SolidWorks</span>
-      <span class="tag">AutoCAD</span>
-      <span class="tag">CFD</span>
-      <span class="tag">Python</span>
-      <span class="tag">Java</span>
-      <span class="tag">3D Printing</span>
-      <span class="tag">Laser Cutting</span>
-      <span class="tag">Soldering</span>
-      <span class="tag">Electronic Components</span>
-      <span class="tag">DaVinci Resolve</span>
-      <span class="tag">Photoshop</span>
-      <span class="tag">Storyboarding</span>
-      <span class="tag">Videography</span>
+    <p class="sec-note">Design software, shop tools, the video kit, and the things that don't show up in a CAD file.</p>
+
+    <div class="tool-group rv">
+      <div class="gl">Design &amp; Analysis</div>
+      <div class="tools">
+        <span class="tag">SolidWorks</span>
+        <span class="tag">AutoCAD</span>
+        <span class="tag">CFD</span>
+        <span class="tag">Python / Java</span>
+        <span class="tag">Excel / Word</span>
+        <span class="tag">Corrigo Enterprise</span>
+        <span class="tag">Computers</span>
+      </div>
+    </div>
+
+    <div class="tool-group rv">
+      <div class="gl">Shop &amp; Fabrication</div>
+      <div class="tools">
+        <span class="tag">3D Printing</span>
+        <span class="tag">Laser Cutting</span>
+        <span class="tag">Soldering</span>
+        <span class="tag">Electronic Components</span>
+        <span class="tag">Painting</span>
+      </div>
+    </div>
+
+    <div class="tool-group rv">
+      <div class="gl">Media</div>
+      <div class="tools">
+        <span class="tag">DaVinci Resolve</span>
+        <span class="tag">Photoshop</span>
+        <span class="tag">Videography / Cameras</span>
+        <span class="tag">Storyboarding</span>
+        <span class="tag">Writing</span>
+      </div>
+    </div>
+
+    <div class="tool-group rv">
+      <div class="gl">On the Team</div>
+      <div class="tools">
+        <span class="tag">Leadership</span>
+        <span class="tag">Communication</span>
+        <span class="tag">Public Speaking</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">AED / CPR / First Aid</span>
+      </div>
     </div>
   </div>
 </section>
@@ -495,7 +625,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     <p class="eyebrow">Service Park</p>
     <div class="rule-dim" aria-hidden="true"></div>
     <h2>Open to motorsport<br>and automotive roles</h2>
-    <p>Looking for internships and full-time work in vehicle dynamics, powertrain, or motorsport engineering. Also open to sponsor conversations for the 2027 EBRC build. Easiest way to reach me is email.</p>
+    <p>Looking for internships and full-time work in vehicle dynamics, powertrain, or motorsport engineering. Also open to sponsor conversations for the ASNE hydroplane build. Easiest way to reach me is email.</p>
     <div class="links">
       <a href="mailto:gabebartlett7125@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/gabrielbartlett/">LinkedIn</a>
