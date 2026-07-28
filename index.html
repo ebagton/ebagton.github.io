@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabe — Mechanical Engineering / Lane 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9EAE5;
+  --paper-2:#F4F5F1;
+  --ink:#10131C;
+  --ink-soft:#5C6159;
+  --line:#C9CCC4;
+  --blue:#1B3F94;
+  --sky:#79B4E8;
+  --red:#C4271F;
+  --grid:rgba(27,63,148,.09);
+  --grid-strong:rgba(27,63,148,.20);
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 140px 140px, 140px 140px, 28px 28px, 28px 28px;
+  color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-soft);
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* ---------- drawing sheet frame ---------- */
+.sheet{position:relative;margin:10px;border:1.5px solid var(--ink)}
+.cross{position:absolute;width:14px;height:14px;pointer-events:none}
+.cross::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:var(--ink)}
+.cross::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--ink)}
+.cross.tl{top:-7px;left:-7px}
+.cross.tr{top:-7px;right:-7px}
+.cross.bl{bottom:-7px;left:-7px}
+.cross.br{bottom:-7px;right:-7px}
+
+.title-block{
+  position:fixed;right:10px;bottom:10px;z-index:61;
+  background:var(--paper-2);border:1.5px solid var(--ink);
+  font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.06em;
+  display:grid;grid-template-columns:auto auto;
+  box-shadow:4px 4px 0 rgba(16,19,28,.14);
+}
+.title-block div{padding:4px 9px;border-top:1px solid var(--line);border-left:1px solid var(--line);white-space:nowrap}
+.title-block div:nth-child(1),.title-block div:nth-child(2){border-top:none}
+.title-block div:nth-child(odd){border-left:none}
+.title-block .k{color:var(--ink-soft);text-transform:uppercase}
+.title-block .v{font-weight:700}
+
+/* ---------- ruler dimension divider ---------- */
+.rule-dim{
+  height:9px;margin:12px 0 clamp(24px,3.4vw,36px);position:relative;
+  background:repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 10px) center / 100% 1px no-repeat;
+}
+.rule-dim::before,.rule-dim::after{content:"";position:absolute;top:0;width:1px;height:9px;background:var(--ink)}
+.rule-dim::before{left:0}
+.rule-dim::after{right:0}
+#contact .rule-dim{background-image:repeating-linear-gradient(90deg, var(--paper-2) 0 1px, transparent 1px 10px)}
+#contact .rule-dim::before,#contact .rule-dim::after{background:var(--paper-2)}
+
+/* ---------- livery stripe ---------- */
+.livery{display:flex;width:100%;height:9px}
+.livery i{display:block;flex:1;height:100%}
+.livery i:nth-child(1){background:var(--sky);flex:2}
+.livery i:nth-child(2){background:var(--blue);flex:3}
+.livery i:nth-child(3){background:var(--red);flex:1}
+
+/* ---------- header ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(233,234,229,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .row{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:16px;padding:11px var(--pad);
+}
+.topbar nav{display:flex;gap:20px;flex-wrap:wrap}
+.topbar a{
+  font-family:"JetBrains Mono",monospace;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  padding-bottom:2px;border-bottom:2px solid transparent;
+}
+.topbar a:hover{border-bottom-color:var(--red)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,9vw,110px) var(--pad) 0;position:relative;overflow:hidden}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(28px,5vw,64px);align-items:start;
+  max-width:1400px;margin:0 auto;
+}
+h1{
+  font-family:"Archivo Black",sans-serif;
+  font-size:clamp(2.9rem,9.4vw,7.4rem);
+  line-height:.88;letter-spacing:-.035em;text-transform:uppercase;
+}
+h1 .hl{color:var(--blue)}
+.lede{
+  margin-top:clamp(20px,3vw,32px);
+  max-width:46ch;font-size:clamp(16px,2vw,19px);color:#2A2E36;
+}
+.hero .eyebrow{margin-bottom:clamp(18px,3vw,28px)}
+.creds{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+
+/* side column: photo + plate */
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:20px}
+.fig-cap{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-top:8px}
+.photo-frame{
+  width:clamp(150px,20vw,208px);
+  aspect-ratio:4/5;
+  border:3px dashed var(--ink);
+  background-color:var(--paper-2);
+  background-image:repeating-linear-gradient(45deg, var(--line) 0 1px, transparent 1px 9px);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);
+  padding:12px;transform:rotate(1.4deg) scale(.96);transform-origin:right;
+}
+.photo-frame span{background:var(--paper-2);padding:4px 8px;border:1px solid var(--line)}
+
+/* rally plate */
+.plate{
+  position:relative;
+  width:clamp(150px,20vw,208px);
+  background:#fff;border:3px solid var(--ink);
+  padding:12px 14px 10px;
+  box-shadow:7px 7px 0 rgba(16,19,28,.16);
+  transform:rotate(-1.6deg);
+}
+.plate .rivet{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.5}
+.plate .rivet.tl{top:8px;left:8px}
+.plate .rivet.tr{top:8px;right:8px}
+.plate .rivet.bl{bottom:8px;left:8px}
+.plate .rivet.br{bottom:8px;right:8px}
+.plate .num{
+  font-family:"Archivo Black",sans-serif;
+  font-size:clamp(52px,7vw,78px);line-height:.82;letter-spacing:-.04em;
+}
+.plate .rule{height:2px;background:var(--ink);margin:9px 0 7px}
+.plate .nm{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.plate .sub{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);margin-top:3px}
+
+/* ---------- pacenote ticker (signature) ---------- */
+.ticker{
+  margin-top:clamp(44px,7vw,86px);
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  background:var(--paper-2);
+  overflow:hidden;white-space:nowrap;position:relative;
+}
+.ticker-track{display:inline-flex;animation:slide 46s linear infinite}
+.ticker-track span{
+  font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 0;
+}
+.ticker-track b{color:var(--red);font-weight:700;padding:0 18px}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:clamp(56px,8vw,104px) var(--pad)}
+.wrap{max-width:1400px;margin:0 auto}
+h2{
+  font-family:"Archivo Black",sans-serif;
+  font-size:clamp(1.7rem,4.4vw,3rem);
+  line-height:.95;letter-spacing:-.025em;text-transform:uppercase;
+  margin:10px 0 clamp(28px,4vw,48px);
+}
+.sec-note{max-width:52ch;color:var(--ink-soft);margin:-24px 0 40px}
+
+/* roadbook */
+.stage{
+  display:grid;
+  grid-template-columns:64px 132px minmax(0,1fr) auto;
+  gap:clamp(14px,2.4vw,32px);align-items:baseline;
+  padding:26px 0;border-top:1px solid var(--line);
+  transition:background .18s ease,padding-left .18s ease;
+}
+.stage:last-child{border-bottom:1px solid var(--line)}
+.stage:hover{background:var(--paper-2)}
+.stage .no{
+  font-family:"Archivo Black",sans-serif;font-size:19px;
+  color:var(--blue);letter-spacing:-.02em;
+  width:44px;height:44px;border-radius:50%;border:1.5px solid var(--blue);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.stage .no::after{content:"";position:absolute;top:50%;left:100%;width:12px;height:1px;background:var(--line)}
+.stage .yr{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.09em;color:var(--ink-soft);padding-top:4px}
+.stage h3{font-family:"Archivo Black",sans-serif;font-size:clamp(1.05rem,2.4vw,1.5rem);letter-spacing:-.015em;text-transform:uppercase;line-height:1.05}
+.stage .role{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:7px 0 9px}
+.stage p{max-width:58ch;color:#2F343B;font-size:15.5px}
+.stage .tag{
+  font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-soft);
+  border:1px solid var(--line);padding:5px 9px;white-space:nowrap;
+}
+
+/* pit box (toolkit) */
+#toolkit{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tools{display:flex;flex-wrap:wrap;gap:10px}
+.tools .tag{background:var(--paper);font-size:11px;padding:7px 12px}
+
+/* lanes */
+.lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:clamp(16px,2.4vw,26px)}
+.lane{background:var(--paper-2);border:1px solid var(--line);padding:24px 22px 26px;position:relative}
+.lane::before{content:"";position:absolute;inset:0 0 auto 0;height:7px}
+.lane:nth-child(1)::before{background:var(--sky)}
+.lane:nth-child(2)::before{background:var(--blue)}
+.lane:nth-child(3)::before{background:var(--red)}
+.lane .n{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.15em;color:var(--ink-soft);margin:8px 0 10px}
+.lane h4{font-family:"Archivo Black",sans-serif;font-size:1.15rem;text-transform:uppercase;letter-spacing:-.015em;margin-bottom:9px}
+.lane p{font-size:15px;color:#2F343B}
+.stat{margin-top:clamp(30px,4vw,44px);display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,64px)}
+.stat div{padding-left:clamp(24px,5vw,64px);border-left:1.5px dashed var(--line)}
+.stat div:first-child{padding-left:0;border-left:none}
+.stat div span{display:block;font-family:"Archivo Black",sans-serif;font-size:clamp(1.6rem,4vw,2.5rem);letter-spacing:-.03em}
+.stat div small{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* service park */
+#contact{background:var(--ink);color:var(--paper-2)}
+#contact .eyebrow{color:#8E948C}
+#contact h2{color:#fff}
+#contact p{max-width:48ch;color:#B9BFB7}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.links a{
+  font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.11em;
+  text-transform:uppercase;text-decoration:none;
+  border:1px solid #3A4048;padding:13px 20px;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.links a:hover{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;border-top:1px solid #262C34}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .side{order:-1;flex-direction:row;align-items:flex-start;justify-content:flex-start;gap:16px}
+  .photo-frame{transform:rotate(1.4deg) scale(.86);transform-origin:left}
+  .plate{transform:rotate(-1.6deg) scale(.86);transform-origin:left}
+  .stage{grid-template-columns:44px 1fr;row-gap:6px}
+  .stage .no{width:36px;height:36px;font-size:15px}
+  .stage .no::after{display:none}
+  .stage .yr{grid-column:2}
+  .stage .body{grid-column:1/-1}
+  .stage .tag{grid-column:1/-1;justify-self:start}
+  .title-block{display:none}
+}
+@media (max-width:700px){
+  .sheet{margin:6px}
+  .cross{width:10px;height:10px}
+  .cross.tl,.cross.tr{top:-5px}
+  .cross.bl,.cross.br{bottom:-5px}
+  .cross.tl,.cross.bl{left:-5px}
+  .cross.tr,.cross.br{right:-5px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<i class="cross tl" aria-hidden="true"></i>
+<i class="cross tr" aria-hidden="true"></i>
+<i class="cross bl" aria-hidden="true"></i>
+<i class="cross br" aria-hidden="true"></i>
+
+<div class="livery" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="topbar">
+  <div class="row">
+    <span class="eyebrow">Gabe — Mechanical Engineering</span>
+    <nav>
+      <a href="#itinerary">Itinerary</a>
+      <a href="#toolkit">Pit Box</a>
+      <a href="#lanes">Lane 3</a>
+      <a href="#contact">Service Park</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Storrs, CT → Quonset Point, RI → wherever the stage goes</p>
+      <h1>Builds boats.<br>Wants to build<br><span class="hl">rally cars.</span></h1>
+      <p class="lede">Mechanical engineering at UConn, chasing sustainable technology that actually lasts. I lead the Electric Boat Racing Club, work on submarines at General Dynamics Electric Boat, and film every bit of it. Composites, electric powertrains, CFD — same problems, different surface.</p>
+      <div class="creds">
+        <span class="tag">Google AI Essentials Specialization</span>
+        <span class="tag">Boating License</span>
+        <span class="tag">AED / CPR / First Aid</span>
+      </div>
+    </div>
+    <div class="side">
+      <div>
+        <div class="photo-frame" aria-label="Photo placeholder"><span>Photo<br>coming soon</span></div>
+        <p class="fig-cap">Fig. 01 — Portrait (TBD)</p>
+      </div>
+      <div>
+        <div class="plate" aria-label="Competition plate, number 3">
+          <i class="rivet tl" aria-hidden="true"></i>
+          <i class="rivet tr" aria-hidden="true"></i>
+          <i class="rivet bl" aria-hidden="true"></i>
+          <i class="rivet br" aria-hidden="true"></i>
+          <div class="num">03</div>
+          <div class="rule"></div>
+          <div class="nm">Gabe</div>
+          <div class="sub">UConn ME</div>
+        </div>
+        <p class="fig-cap">Fig. 02 — Spec plate</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Pacenotes">
+    <div class="ticker-track">
+      <span>Seadog II<b>·</b>Big Dawg I<b>·</b>composite hull<b>·</b>electric powertrain<b>·</b>Quonset Point<b>·</b>CFD<b>·</b>400k views<b>·</b>DEMO Day ECE 1st place<b>·</b>1998 Jeep XJ<b>·</b>President, EBRC<b>·</b>Lane 3<b>·</b>launch driver, Ensign Nationals<b>·</b>&nbsp;</span>
+      <span aria-hidden="true">Seadog II<b>·</b>Big Dawg I<b>·</b>composite hull<b>·</b>electric powertrain<b>·</b>Quonset Point<b>·</b>CFD<b>·</b>400k views<b>·</b>DEMO Day ECE 1st place<b>·</b>1998 Jeep XJ<b>·</b>President, EBRC<b>·</b>Lane 3<b>·</b>launch driver, Ensign Nationals<b>·</b>&nbsp;</span>
+    </div>
+  </div>
+</div>
+
+<section id="itinerary">
+  <div class="wrap">
+    <p class="eyebrow">Itinerary</p>
+    <div class="rule-dim" aria-hidden="true"></div>
+    <h2>The stages so far</h2>
+    <p class="sec-note">Every stage is something I either led, built, or broke and rebuilt. In order.</p>
+
+    <div class="stage rv">
+      <div class="no">01</div>
+      <div class="yr">2026 — now</div>
+      <div class="body">
+        <h3>Electric Boat Racing Club</h3>
+        <div class="role">President</div>
+        <p>Elected president at the end of the 2026 season after leading hull design on "Big Dawg I" and helping design, prep, and paint "Seadog II" — 1st place at UConn's DEMO Day ECE, 2025. Now steering the club, affiliated with the American Society of Naval Engineers, into the 2027 build: hull design, composite layups, and electric powertrain integration.</p>
+      </div>
+      <div class="tag">Composites / Powertrain</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">02</div>
+      <div class="yr">Current</div>
+      <div class="body">
+        <h3>General Dynamics Electric Boat</h3>
+        <div class="role">Engineering Intern — Quonset Point, RI</div>
+        <p>Managing delivery and preventative maintenance scheduling for the industrial gas systems that keep Class 1 submarine production running, and working with senior engineers to clear the roadblocks that halt the line. Building the working knowledge it takes to scale defense manufacturing into new buildings.</p>
+      </div>
+      <div class="tag">Marine / Manufacturing</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">03</div>
+      <div class="yr">2024 — 2026</div>
+      <div class="body">
+        <h3>Niantic Bay Yacht Club</h3>
+        <div class="role">Steward / Launch Driver</div>
+        <p>Ran daily club operations and the launch service on the water — fueling boats, ferrying members and guests, and keeping things running. Morning launch driver for the Ensign Nationals, 2024.</p>
+      </div>
+      <div class="tag">Marine Ops</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">04</div>
+      <div class="yr">2024 — 2026</div>
+      <div class="body">
+        <h3>Weekend of Welcome</h3>
+        <div class="role">Captain, UConn Student Activities</div>
+        <p>Found, interviewed, hired, and trained nearly 100 student leaders for UConn's Weekend of Welcome — the program that gets incoming first-years through their first week on campus.</p>
+      </div>
+      <div class="tag">Leadership / Ops</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">05</div>
+      <div class="yr">2020 — now</div>
+      <div class="body">
+        <h3>Lane 3</h3>
+        <div class="role">Editor &amp; Manager — 400k+ views</div>
+        <p>Six years editing and managing YouTube, Shorts, Reels, and TikTok across multiple channels. A build-and-process channel plus a rally-focused Shorts feed — I explain the engineering I'd want explained to me: anti-lag, diff behavior, why a car does what it does when the surface stops cooperating.</p>
+      </div>
+      <div class="tag">Video / Technical writing</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">06</div>
+      <div class="yr">2026 — now</div>
+      <div class="body">
+        <h3>UConn Ideation Studio</h3>
+        <div class="role">Studio Assistant &amp; Engineering Ambassador</div>
+        <p>Running the shop for other students — machining, 3D printing, laser cutting, prototyping. Also leads UConn Bound campus tours as an Engineering Ambassador, the tours that convince the next batch to come here.</p>
+      </div>
+      <div class="tag">Fabrication / Teaching</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">07</div>
+      <div class="yr">Ongoing</div>
+      <div class="body">
+        <h3>Copper</h3>
+        <div class="role">Owner / Builder — Robot Study Assistant</div>
+        <p>Building a small cat-shaped robot that keeps you on task while studying. Hands-on with electronic components and 3D-printed parts designed in SolidWorks, working up to a custom battery pack.</p>
+      </div>
+      <div class="tag">Personal build</div>
+    </div>
+
+    <div class="stage rv">
+      <div class="no">08</div>
+      <div class="yr">Ongoing</div>
+      <div class="body">
+        <h3>1998 Jeep Cherokee XJ</h3>
+        <div class="role">Owner / Mechanic / Test bed</div>
+        <p>The vehicle that keeps the theory honest. Nothing teaches packaging and failure modes like a 28-year-old truck and a driveway.</p>
+      </div>
+      <div class="tag">Personal build</div>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <p class="eyebrow">Pit Box</p>
+    <div class="rule-dim" aria-hidden="true"></div>
+    <h2>What's in the toolkit</h2>
+    <p class="sec-note">Design software, shop tools, and the video kit that keeps Lane 3 running.</p>
+    <div class="tools">
+      <span class="tag">SolidWorks</span>
+      <span class="tag">AutoCAD</span>
+      <span class="tag">CFD</span>
+      <span class="tag">Python</span>
+      <span class="tag">Java</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">Laser Cutting</span>
+      <span class="tag">Soldering</span>
+      <span class="tag">Electronic Components</span>
+      <span class="tag">DaVinci Resolve</span>
+      <span class="tag">Photoshop</span>
+      <span class="tag">Storyboarding</span>
+      <span class="tag">Videography</span>
+    </div>
+  </div>
+</section>
+
+<section id="lanes">
+  <div class="wrap">
+    <p class="eyebrow">Lane 3</p>
+    <div class="rule-dim" aria-hidden="true"></div>
+    <h2>Three lanes, one channel</h2>
+    <p class="sec-note">Everything I make sorts into one of three lanes. It keeps the channel coherent and keeps me from posting noise.</p>
+    <div class="lanes">
+      <div class="lane rv"><div class="n">Lane 01</div><h4>Story</h4><p>Reflection pieces. What I expected, what actually happened, and the gap between the two.</p></div>
+      <div class="lane rv"><div class="n">Lane 02</div><h4>Adventure</h4><p>Chaos with a camera. Trips, stages, and the things that don't go to plan.</p></div>
+      <div class="lane rv"><div class="n">Lane 03</div><h4>Build</h4><p>Process and engineering. The lane the whole thing is named after.</p></div>
+    </div>
+    <div class="stat rv">
+      <div><span>400k+</span><small>Views</small></div>
+      <div><span>6+</span><small>Years creating</small></div>
+      <div><span>~60s</span><small>Rally short format</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Service Park</p>
+    <div class="rule-dim" aria-hidden="true"></div>
+    <h2>Open to motorsport<br>and automotive roles</h2>
+    <p>Looking for internships and full-time work in vehicle dynamics, powertrain, or motorsport engineering. Also open to sponsor conversations for the 2027 EBRC build. Easiest way to reach me is email.</p>
+    <div class="links">
+      <a href="mailto:gabebartlett7125@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/gabrielbartlett/">LinkedIn</a>
+      <a href="https://www.youtube.com/@ebag._.ton">YouTube — Lane 3</a>
+      <a href="resume.pdf">Resume (PDF)</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Gabe — built in Storrs, CT</footer>
+</div>
+
+<div class="title-block" aria-hidden="true">
+  <div class="k">Dwg</div><div class="v">Gabe — Résumé</div>
+  <div class="k">Scale</div><div class="v">NTS</div>
+  <div class="k">Sheet</div><div class="v">1 of 1</div>
+  <div class="k">Rev</div><div class="v">2026.07</div>
+</div>
+
+<script>
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach((el, i) => {
+  el.style.transitionDelay = (i % 5) * 55 + 'ms';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
