@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gabe / Mechanical Engineering / Lane 3</title>
+<title>Gabe / Mechanical Engineering / Documenting My Life</title>
 <meta name="description" content="Gabriel Bartlett, mechanical engineering at UConn. President of the Electric Boat Racing Team and summer engineering intern at General Dynamics Electric Boat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,7 +144,7 @@ h1 .hl{color:var(--blue)}
 .side{display:flex;flex-direction:column;align-items:flex-end;gap:20px}
 .fig-cap{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-top:8px}
 .photo-frame{
-  width:clamp(150px,20vw,208px);
+  width:clamp(150px,26vw,300px);
   aspect-ratio:4/5;
   border:3px solid var(--ink);
   background:var(--paper-2);
@@ -338,6 +338,32 @@ h2{
 .stat div span{display:block;font-family:"Archivo Black",sans-serif;font-size:clamp(1.6rem,4vw,2.5rem);letter-spacing:-.03em}
 .stat div small{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
 
+/* channel footer: channel card + featured video */
+.channel-foot{
+  display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);
+  gap:clamp(20px,3vw,44px);align-items:start;
+  margin-top:clamp(36px,5vw,60px);
+}
+.chan-card{
+  display:block;text-decoration:none;position:relative;
+  background:var(--paper);border:1px solid var(--line);
+  padding:24px 22px 26px;
+  transition:border-color .16s ease;
+}
+.chan-card::before{content:"";position:absolute;top:-1px;left:-1px;width:22px;height:22px;border-top:3px solid var(--red);border-left:3px solid var(--red)}
+.chan-card:hover{border-color:var(--ink)}
+.chan-card img{width:76px;height:76px;border-radius:50%;display:block;border:1.5px solid var(--ink);margin-bottom:15px}
+.chan-name{display:block;font-family:"Archivo Black",sans-serif;font-size:1rem;letter-spacing:-.015em;margin-bottom:5px}
+.chan-handle{display:block;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;color:var(--ink-soft);margin-bottom:16px}
+.chan-cta{
+  display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.11em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:9px 14px;
+  transition:background .16s ease,color .16s ease;
+}
+.chan-card:hover .chan-cta{background:var(--ink);color:var(--paper-2)}
+@media (max-width:760px){.channel-foot{grid-template-columns:1fr}}
+
 /* contact */
 #contact{background:var(--ink);color:var(--paper-2)}
 #contact .eyebrow{color:#8E948C}
@@ -416,8 +442,6 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
       <p class="lede">I'm Gabe, a mechanical engineer at UConn and president of the Electric Boat Racing Team. I run it so students get shop time, tools, and a real build to put their name on without paying extra for it. I spend my summers on submarines at General Dynamics Electric Boat, and I'm aiming at motorsport after that.</p>
       <div class="creds">
         <span class="tag">UConn ME, Class of 2028</span>
-        <span class="tag">Google AI Essentials</span>
-        <span class="tag">AED / CPR / First Aid</span>
       </div>
     </div>
     <div class="side">
@@ -446,8 +470,8 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
 
   <div class="ticker" aria-label="Project index">
     <div class="ticker-track">
-      <span>Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite layup<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>Copper<b>·</b>President, EBRT<b>·</b>armorer<b>·</b>Lane 3<b>·</b>Class of 2028<b>·</b>&nbsp;</span>
-      <span aria-hidden="true">Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite layup<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>Copper<b>·</b>President, EBRT<b>·</b>armorer<b>·</b>Lane 3<b>·</b>Class of 2028<b>·</b>&nbsp;</span>
+      <span>Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite layup<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>Copper<b>·</b>President, EBRT<b>·</b>armorer<b>·</b>Documenting My Life<b>·</b>Class of 2028<b>·</b>&nbsp;</span>
+      <span aria-hidden="true">Seadog II<b>·</b>Big Dawg I<b>·</b>electric hydroplane<b>·</b>ASNE PEP<b>·</b>composite layup<b>·</b>Quonset Point<b>·</b>ECE DEMO Day 1st place<b>·</b>Copper<b>·</b>President, EBRT<b>·</b>armorer<b>·</b>Documenting My Life<b>·</b>Class of 2028<b>·</b>&nbsp;</span>
     </div>
   </div>
 </div>
@@ -468,7 +492,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     </div>
     <div class="reel-cap">
       <span>Placeholder reel / elevator pitch to come</span>
-      <span>Lane 3</span>
+      <span>Documenting My Life</span>
     </div>
   </div>
 </div>
@@ -558,7 +582,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
       <div class="no">06</div>
       <div class="yr">Ongoing</div>
       <div class="body">
-        <h3>Lane 3</h3>
+        <h3>Documenting My Life</h3>
         <div class="role">Personal brand, @gabriel._.bartlett</div>
         <p>I make videos that document my engineering process. The goal is that someone watching goes and starts making the thing they care about.</p>
       </div>
@@ -672,7 +696,15 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <span class="tag">Communication</span>
         <span class="tag">Public Speaking</span>
         <span class="tag">Time Management</span>
+      </div>
+    </div>
+
+    <div class="tool-group rv">
+      <div class="gl">Certifications</div>
+      <div class="tools">
+        <span class="tag">Google AI Essentials Specialization</span>
         <span class="tag">AED / CPR / First Aid</span>
+        <span class="tag">Boating License</span>
       </div>
     </div>
   </div>
@@ -682,17 +714,40 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   <div class="wrap">
     <p class="eyebrow"><b>Sheet 04</b> / Channel</p>
     <div class="rule-dim" aria-hidden="true"></div>
-    <h2>Three lanes, one channel</h2>
-    <p class="sec-note">I sort what I make into three lanes. It keeps the channel from turning into noise.</p>
+    <h2>Documenting my life</h2>
+    <p class="sec-note">I sort what I make into three series. It keeps the channel from turning into noise.</p>
     <div class="lanes">
-      <div class="lane rv"><div class="n">Lane 01</div><h4>Story</h4><p>Reflection pieces on what I expected and what happened instead.</p></div>
-      <div class="lane rv"><div class="n">Lane 02</div><h4>Adventure</h4><p>Trips and races, camera running when the plan falls apart.</p></div>
-      <div class="lane rv"><div class="n">Lane 03</div><h4>Build</h4><p>Process and engineering, the lane the channel is named after.</p></div>
+      <div class="lane rv"><div class="n">Series 01</div><h4>Story</h4><p>Reflection pieces on what I expected and what happened instead.</p></div>
+      <div class="lane rv"><div class="n">Series 02</div><h4>Adventure</h4><p>Trips and races, camera running when the plan falls apart.</p></div>
+      <div class="lane rv"><div class="n">Series 03</div><h4>Build</h4><p>Process and engineering, from the first sketch to the water.</p></div>
     </div>
     <div class="stat rv">
       <div><span>400k+</span><small>Views</small></div>
       <div><span>6+</span><small>Years creating</small></div>
       <div><span>~60s</span><small>Rally short format</small></div>
+    </div>
+
+    <div class="channel-foot">
+      <a class="chan-card rv" href="https://www.youtube.com/@ebagton">
+        <img src="images/channel-avatar.jpg" width="400" height="400" loading="lazy"
+             alt="Profile picture for the Gabriel._.Bartlett YouTube channel">
+        <span class="chan-name">Gabriel._.Bartlett</span>
+        <span class="chan-handle">@ebagton</span>
+        <span class="chan-cta">Visit channel</span>
+      </a>
+      <figure class="figure rv">
+        <span class="fig-lbl">Fig. 06 / Featured</span>
+        <div class="reel-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/ip2hr8rALpI"
+            title="UCONN Electric Boat Racing || The Art of Perseverance"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <figcaption>The Art of Perseverance, a season with the Electric Boat Racing Team</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -706,7 +761,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     <div class="links">
       <a href="mailto:gabebartlett7125@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/gabrielbartlett/">LinkedIn</a>
-      <a href="https://www.youtube.com/@ebagton">YouTube / Lane 3</a>
+      <a href="https://www.youtube.com/@ebagton">YouTube</a>
       <a href="resume.pdf">Resume (PDF)</a>
     </div>
   </div>
