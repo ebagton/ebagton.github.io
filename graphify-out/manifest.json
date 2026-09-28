@@ -1,0 +1,38 @@
+{
+  "index.html": {
+    "mtime": 1790351374.7034101,
+    "seen": 1790554018.850844,
+    "ast_hash": "314552df837ac0ad6816f3ef47e62da3",
+    "semantic_hash": "314552df837ac0ad6816f3ef47e62da3"
+  },
+  "resume.pdf": {
+    "mtime": 1790351374.705186,
+    "seen": 1790554018.8508487,
+    "ast_hash": "abf923f503133392e9eb48a047a316f4",
+    "semantic_hash": "abf923f503133392e9eb48a047a316f4"
+  },
+  "images/channel-page.jpg": {
+    "mtime": 1790351374.697186,
+    "seen": 1790554018.8508508,
+    "ast_hash": "186422265758f8f539ca5c88e8d6c1b0",
+    "semantic_hash": "186422265758f8f539ca5c88e8d6c1b0"
+  },
+  "images/motor-solder.jpg": {
+    "mtime": 1790351374.7034101,
+    "seen": 1790554018.850853,
+    "ast_hash": "84847c329e0f272f88cd9881d14e35e4",
+    "semantic_hash": "84847c329e0f272f88cd9881d14e35e4"
+  },
+  "images/respirator-seadog2.jpg": {
+    "mtime": 1790351374.7034101,
+    "seen": 1790554018.8508546,
+    "ast_hash": "2fc22f00d90f799ee01fcf0027a5c329",
+    "semantic_hash": "2fc22f00d90f799ee01fcf0027a5c329"
+  },
+  "images/team-2026.jpg": {
+    "mtime": 1790351374.7034101,
+    "seen": 1790554018.8508565,
+    "ast_hash": "5fce144368b0f3c8cbd62ff6dfd4e1cf",
+    "semantic_hash": "5fce144368b0f3c8cbd62ff6dfd4e1cf"
+  }
+}
