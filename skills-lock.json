@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "search-youtube": {
+      "source": "gupsammy/claudest",
+      "sourceType": "github",
+      "skillPath": "plugins/claude-research/skills/search-youtube/SKILL.md",
+      "computedHash": "94250f25102d23b243d7277ef6535e77c80b9515b7e8e4b1f296b907c536853b"
+    }
+  }
+}
