@@ -72,6 +72,11 @@ h1{font-family:"Archivo Black",sans-serif;font-size:clamp(2.6rem,8vw,7.2rem);lin
 h1 .hl{color:var(--blue)}
 .lede{margin-top:clamp(20px,3vw,32px);max-width:52ch;font-size:clamp(16px,2vw,19px);color:#2A2E36}
 
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:clamp(28px,5vw,64px);align-items:end}
+.logo-frame{background:#fff;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(16,19,28,.12);padding:clamp(14px,2vw,24px);line-height:0}
+.logo-frame img{width:100%;height:auto;display:block}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-grid figure{max-width:320px}}
+
 /* parts list (index table) */
 .parts-wrap{padding:0 var(--pad)}
 .parts{max-width:1400px;margin:0 auto;width:100%;border-collapse:collapse;background:var(--paper-2);border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(16,19,28,.12)}
@@ -113,7 +118,8 @@ h2{font-family:"Archivo Black",sans-serif;font-size:clamp(1.8rem,4.6vw,3.4rem);l
 /* figures */
 .figs{display:grid;gap:clamp(18px,2.6vw,32px);margin-top:clamp(30px,4vw,48px)}
 .figs.two{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:start}
-@media (max-width:760px){.figs.two{grid-template-columns:1fr}}
+.figs.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+@media (max-width:760px){.figs.two,.figs.pair{grid-template-columns:1fr}}
 .fig-lbl{display:inline-block;margin-bottom:10px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
 .frame{border:1.5px solid var(--ink);background:var(--paper-2);box-shadow:8px 8px 0 rgba(16,19,28,.12);line-height:0;overflow:hidden}
 .frame img{width:100%;height:auto;display:block}
@@ -169,10 +175,16 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
 
 <main>
 <div class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+    <div>
     <p class="eyebrow"><b>Gabriel Bartlett</b> / Mechanical Engineering, UConn '28</p>
     <h1>Things I've<br><span class="hl">built.</span></h1>
     <p class="lede">Boats, a robot, and the parts of engineering you only learn by building. Each project below is laid out like a drawing sheet: what it is, what I did on it, and where it stands now.</p>
+    </div>
+    <figure class="rv">
+      <span class="fig-lbl">Fig. 00 / Team mark</span>
+      <div class="logo-frame"><img src="../images/ebrc-logo.png" width="900" height="705" alt="UConn Electric Boat Racing Club logo: a white and navy hydroplane with shark-mouth sponsons and a red lightning bolt"></div>
+    </figure>
   </div>
 </div>
 
@@ -246,9 +258,21 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <div class="tags"><span class="tag">Hull design</span><span class="tag">SolidWorks</span><span class="tag">Epoxy &amp; paint</span><span class="tag">Spot welding</span><span class="tag">Li-ion battery packs</span></div>
       </div>
     </div>
+    <div class="figs pair">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.1 / On the water</span>
+        <div class="frame"><img src="../images/seadog-water-side.jpg" width="1079" height="621" loading="lazy" alt="Seadog II running on open water, blue and white UConn livery with Sea Dog II on the hull, spray off the stern"></div>
+        <figcaption>Seadog II under power</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.2 / Head on</span>
+        <div class="frame"><img src="../images/seadog-water-front.jpg" width="918" height="527" loading="lazy" alt="Seadog II approaching head on across the water, sponsons and canopy visible, wake curling behind"></div>
+        <figcaption>Seadog II coming in, wake behind</figcaption>
+      </figure>
+    </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.1 / Team</span>
+        <span class="fig-lbl">Fig. 02.3 / Team</span>
         <div class="frame">
           <img src="../images/team-2026.jpg" width="1600" height="1200" loading="lazy"
                alt="The UConn Electric Boat Racing Team standing together behind Seadog II at the water's edge">
@@ -256,7 +280,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <figcaption>The Electric Boat Racing Team with Seadog II at ASNE PEP, 2026</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.2 / Prep</span>
+        <span class="fig-lbl">Fig. 02.4 / Prep</span>
         <div class="frame">
           <img src="../images/respirator-seadog2.jpg" width="720" height="1280" loading="lazy"
                alt="Gabriel Bartlett in a respirator and safety glasses, with the Seadog II hull behind him in the shop">
@@ -266,7 +290,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.3 / Pits, ASNE PEP</span>
+        <span class="fig-lbl">Fig. 02.5 / Pits, ASNE PEP</span>
         <div class="frame">
           <img src="../images/pep-pits.jpg" width="1600" height="1205" loading="lazy"
                alt="Team members crouched around Seadog II on its cart in the competition parking lot, working under the hull">
@@ -274,7 +298,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <figcaption>Working under the hull between runs at ASNE PEP</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.4 / Battery build</span>
+        <span class="fig-lbl">Fig. 02.6 / Battery build</span>
         <div class="frame">
           <img src="../images/seadog-shop-battery.jpg" width="1200" height="1600" loading="lazy"
                alt="Team members in the shop around Seadog II with the hatches open, a soldering station and tools on the deck">
@@ -284,7 +308,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.5 / Dock</span>
+        <span class="fig-lbl">Fig. 02.7 / Dock</span>
         <div class="frame">
           <img src="../images/pep-dock.jpg" width="1600" height="1200" loading="lazy"
                alt="Team members on a wooden dock at the competition, with a blue hull in the water alongside">
@@ -292,7 +316,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <figcaption>On the dock at ASNE PEP, April 2026</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.6 / Pit setup</span>
+        <span class="fig-lbl">Fig. 02.8 / Pit setup</span>
         <div class="frame">
           <img src="../images/pep-cart.jpg" width="900" height="1600" loading="lazy"
                alt="Seadog II on its wooden launch cart in the competition lot, with toolkits laid out on the deck">
@@ -302,7 +326,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
     </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.7 / Film</span>
+        <span class="fig-lbl">Fig. 02.9 / Film</span>
         <div class="frame video">
           <iframe src="https://www.youtube-nocookie.com/embed/ip2hr8rALpI"
                   title="UCONN Electric Boat Racing || The Art of Perseverance"
@@ -313,7 +337,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <figcaption>The Art of Perseverance, a season with the Electric Boat Racing Team</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.8 / Powertrain</span>
+        <span class="fig-lbl">Fig. 02.10 / Powertrain</span>
         <div class="frame">
           <img src="../images/motor-solder.jpg" width="1200" height="1600" loading="lazy"
                alt="Two students working on motor solder joints on the boat in the shop">
@@ -347,7 +371,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <div class="tags"><span class="tag">Arduino</span><span class="tag">PCA9685 / I²C</span><span class="tag">Servos</span><span class="tag">C++</span><span class="tag">SolidWorks</span><span class="tag">3D printing</span><span class="tag">Battery design</span></div>
       </div>
     </div>
-    <div class="figs">
+    <div class="figs two">
       <figure class="rv">
         <span class="fig-lbl">Fig. 03.1 / Parts</span>
         <div class="frame">
@@ -356,10 +380,15 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         </div>
         <figcaption>Printed base, leg assemblies, PCA9685 driver and Arduino Nano before assembly</figcaption>
       </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 03.2 / Assembled</span>
+        <div class="frame"><img src="../images/copper-assembled.jpg" width="1125" height="1500" loading="lazy" alt="Copper assembled: the blue 3D-printed four-legged body with servos on every leg, wiring bundled on top, sitting on a wooden workbench"></div>
+        <figcaption>All four legs on, wiring still to tidy</figcaption>
+      </figure>
     </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 03.2 / Wiring</span>
+        <span class="fig-lbl">Fig. 03.3 / Wiring</span>
         <div class="frame">
           <img src="../images/copper-wired.jpg" width="1600" height="900" loading="lazy"
                alt="Copper's servos wired to the PCA9685 driver on the base plate, connected to an Elegoo Uno R3 and a laptop over USB, with a DC barrel jack for servo power">
@@ -367,7 +396,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <figcaption>First wiring test: servos on the PCA9685, Uno R3 over USB, DC jack for servo power</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 03.3 / Firmware</span>
+        <span class="fig-lbl">Fig. 03.4 / Firmware</span>
         <div class="frame">
           <img src="../images/copper-firmware.jpg" width="1600" height="900" loading="lazy"
                alt="Laptop screen showing the Arduino firmware for Copper: setup code for the PCA9685 at 50 Hz and a serial command loop">
