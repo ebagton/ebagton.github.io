@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Bartlett / Builds</title>
+<meta name="description" content="Project showcase for Gabriel Bartlett, mechanical engineering at UConn: Seadog II, Big Dawg I, the ASNE electric hydroplane, and Copper the study robot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9EAE5;
+  --paper-2:#F4F5F1;
+  --ink:#10131C;
+  --ink-soft:#5C6159;
+  --line:#C9CCC4;
+  --blue:#1B3F94;
+  --sky:#79B4E8;
+  --red:#C4271F;
+  --grid:rgba(27,63,148,.09);
+  --grid-strong:rgba(27,63,148,.20);
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:140px 140px,140px 140px,28px 28px,28px 28px;
+  color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.mono,.eyebrow,.tag,.fig-lbl,figcaption,.specs dt,.parts th,.parts td.c{font-family:"JetBrains Mono",ui-monospace,monospace}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.eyebrow b{color:var(--blue);font-weight:700}
+
+/* frame */
+.sheet{position:relative;margin:10px;border:1.5px solid var(--ink)}
+.cross{position:absolute;width:14px;height:14px;pointer-events:none}
+.cross::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:var(--ink)}
+.cross::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--ink)}
+.cross.tl{top:-7px;left:-7px}.cross.tr{top:-7px;right:-7px}
+.cross.bl{bottom:-7px;left:-7px}.cross.br{bottom:-7px;right:-7px}
+.livery{display:flex;height:9px}
+.livery i{display:block;height:100%}
+.livery i:nth-child(1){background:var(--sky);flex:2}
+.livery i:nth-child(2){background:var(--blue);flex:3}
+.livery i:nth-child(3){background:var(--red);flex:1}
+
+/* header */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(233,234,229,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:11px var(--pad)}
+.topbar nav{display:flex;gap:clamp(12px,1.8vw,24px);flex-wrap:wrap}
+.topbar a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;white-space:nowrap}
+.topbar a .n{color:var(--blue);font-weight:700;margin-right:6px}
+.topbar a:hover{border-bottom-color:var(--red)}
+@media (max-width:620px){.topbar a .n{display:none}.topbar .row{flex-direction:column;align-items:flex-start;gap:8px}}
+
+/* hero */
+.hero{padding:clamp(48px,9vw,110px) var(--pad) clamp(40px,6vw,72px)}
+.hero .wrap{max-width:1400px;margin:0 auto}
+h1{font-family:"Archivo Black",sans-serif;font-size:clamp(2.6rem,8vw,7.2rem);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;margin-top:clamp(18px,3vw,28px)}
+h1 .hl{color:var(--blue)}
+.lede{margin-top:clamp(20px,3vw,32px);max-width:52ch;font-size:clamp(16px,2vw,19px);color:#2A2E36}
+
+/* parts list (index table) */
+.parts-wrap{padding:0 var(--pad)}
+.parts{max-width:1400px;margin:0 auto;width:100%;border-collapse:collapse;background:var(--paper-2);border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(16,19,28,.12)}
+.parts caption{text-align:left;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);padding-bottom:10px}
+.parts th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;text-align:left;padding:10px 16px;border-bottom:1.5px solid var(--ink)}
+.parts td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:baseline}
+.parts td.c{font-size:12px;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap}
+.parts td.c.no{color:var(--blue);font-weight:700}
+.parts td a{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:-.01em;text-decoration:none;border-bottom:2px solid transparent}
+.parts tr:hover td{background:var(--paper)}
+.parts tr:hover td a{border-bottom-color:var(--red)}
+@media (max-width:700px){.parts .hide-sm{display:none}}
+
+/* project sheets */
+.project{padding:clamp(64px,9vw,120px) var(--pad) 0}
+.project .wrap{max-width:1400px;margin:0 auto}
+.proj-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:16px}
+.proj-head .big{font-family:"Archivo Black",sans-serif;font-size:clamp(3rem,9vw,7rem);line-height:.8;letter-spacing:-.05em;color:var(--blue);margin-right:clamp(14px,2vw,24px)}
+.proj-head .ttl{display:flex;align-items:flex-end;flex-wrap:wrap}
+h2{font-family:"Archivo Black",sans-serif;font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:.92;letter-spacing:-.025em;text-transform:uppercase}
+.status{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;padding:7px 12px;border:1.5px solid currentColor;white-space:nowrap}
+.status.live{color:var(--red)}
+.status.done{color:var(--blue)}
+.status.wip{color:var(--ink-soft)}
+
+.proj-body{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,4vw,56px);margin-top:clamp(26px,3.4vw,40px)}
+@media (max-width:820px){.proj-body{grid-template-columns:1fr}}
+.specs{border:1px solid var(--line);background:var(--paper-2);align-self:start}
+.specs div{display:grid;grid-template-columns:88px 1fr;border-top:1px solid var(--line)}
+.specs div:first-child{border-top:none}
+.specs dt{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px;border-right:1px solid var(--line)}
+.specs dd{font-size:14px;padding:9px 12px;font-weight:500}
+.write p{max-width:64ch;color:#2A2E36;font-size:clamp(16px,1.8vw,18px)}
+.write p + p{margin-top:14px}
+.write b{color:var(--blue);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);padding:6px 10px}
+
+/* figures */
+.figs{display:grid;gap:clamp(18px,2.6vw,32px);margin-top:clamp(30px,4vw,48px)}
+.figs.two{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:start}
+@media (max-width:760px){.figs.two{grid-template-columns:1fr}}
+.fig-lbl{display:inline-block;margin-bottom:10px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.frame{border:1.5px solid var(--ink);background:var(--paper-2);box-shadow:8px 8px 0 rgba(16,19,28,.12);line-height:0;overflow:hidden}
+.frame img{width:100%;height:auto;display:block}
+.frame.video{position:relative;aspect-ratio:16/9;background:var(--ink)}
+.frame.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+figcaption{margin-top:11px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+/* empty drawing frame for photos not added yet */
+.frame.empty{aspect-ratio:16/9;line-height:1.4;display:flex;align-items:center;justify-content:center;
+  background:
+    linear-gradient(to top right, transparent calc(50% - .75px), var(--line) calc(50% - .75px), var(--line) calc(50% + .75px), transparent calc(50% + .75px)),
+    linear-gradient(to top left, transparent calc(50% - .75px), var(--line) calc(50% - .75px), var(--line) calc(50% + .75px), transparent calc(50% + .75px)),
+    var(--paper-2)}
+.figs:not(.two) .frame.empty{aspect-ratio:21/6}
+.frame.empty span{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);padding:6px 12px;border:1px solid var(--line)}
+
+/* contact */
+#contact{margin-top:clamp(72px,10vw,130px);padding:clamp(56px,8vw,104px) var(--pad);background:var(--ink);color:var(--paper-2)}
+#contact .wrap{max-width:1400px;margin:0 auto}
+#contact .eyebrow{color:#8E948C}
+#contact h2{color:#fff;margin:14px 0 22px}
+#contact p{max-width:50ch;color:#B9BFB7}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.links a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;border:1px solid #3A4048;padding:13px 20px;transition:background .16s,color .16s,border-color .16s}
+.links a:hover{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;border-top:1px solid #262C34}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media (max-width:700px){.sheet{margin:6px}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="sheet">
+<i class="cross tl" aria-hidden="true"></i>
+<i class="cross tr" aria-hidden="true"></i>
+<i class="cross bl" aria-hidden="true"></i>
+<i class="cross br" aria-hidden="true"></i>
+<div class="livery" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="topbar">
+  <div class="row">
+    <a href="../" class="eyebrow" style="border:none">← Gabe / Portfolio</a>
+    <nav aria-label="Projects">
+      <a href="#hydroplane"><span class="n">01</span>Hydroplane</a>
+      <a href="#seadog"><span class="n">02</span>Seadog II</a>
+      <a href="#bigdawg"><span class="n">03</span>Big Dawg I</a>
+      <a href="#copper"><span class="n">04</span>Copper</a>
+      <a href="#contact"><span class="n">05</span>Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><b>Gabriel Bartlett</b> / Mechanical Engineering, UConn '28</p>
+    <h1>Things I've<br><span class="hl">built.</span></h1>
+    <p class="lede">Boats, a robot, and the parts of engineering you only learn by building. Each project below is laid out like a drawing sheet: what it is, what I did on it, and where it stands now.</p>
+  </div>
+</div>
+
+<div class="parts-wrap">
+  <table class="parts rv">
+    <caption>Parts list / Project index</caption>
+    <thead>
+      <tr><th>No.</th><th>Project</th><th class="hide-sm">My role</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="c no">01</td><td><a href="#hydroplane">Electric hydroplane</a></td><td class="hide-sm">President, EBRT</td><td class="c">In build</td></tr>
+      <tr><td class="c no">02</td><td><a href="#seadog">Seadog II</a></td><td class="hide-sm">Design, prep &amp; paint</td><td class="c">1st place, 2025</td></tr>
+      <tr><td class="c no">03</td><td><a href="#bigdawg">Big Dawg I</a></td><td class="hide-sm">Hull design team lead</td><td class="c">Complete</td></tr>
+      <tr><td class="c no">04</td><td><a href="#copper">Copper</a></td><td class="hide-sm">Solo build</td><td class="c">Ongoing</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 01 -->
+<section class="project" id="hydroplane">
+  <div class="wrap">
+    <div class="proj-head rv">
+      <div class="ttl"><span class="big">01</span><h2>Electric<br>hydroplane</h2></div>
+      <span class="status live">In build / 2026–27</span>
+    </div>
+    <div class="proj-body">
+      <dl class="specs rv">
+        <div><dt>Team</dt><dd>UConn Electric Boat Racing Team</dd></div>
+        <div><dt>Role</dt><dd>President</dd></div>
+        <div><dt>Event</dt><dd>ASNE Promoting Electric Propulsion (PEP)</dd></div>
+        <div><dt>Type</dt><dd>Electric hydroplane</dd></div>
+      </dl>
+      <div class="write rv">
+        <p>The team's current build is an <b>electric hydroplane</b> for the American Society of Naval Engineers' <b>Promoting Electric Propulsion</b> competition. The race exists to speed up research into electric propulsion in an industry that still runs on gas.</p>
+        <p>As president, my goal for this year is to put members on real engineering work while they're still in school: hulls, powertrains, and the failures in between.</p>
+        <div class="tags"><span class="tag">Electric propulsion</span><span class="tag">Composites</span><span class="tag">Powertrain</span><span class="tag">Team leadership</span></div>
+      </div>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 01.1 / Hull</span>
+        <div class="frame empty"><span>Build photos coming</span></div>
+        <figcaption>Hydroplane hull, in progress</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 01.2 / Shop</span>
+        <div class="frame">
+          <img src="../images/motor-solder.jpg" width="1200" height="1600" loading="lazy"
+               alt="Two students working on motor solder joints on the boat in the shop">
+        </div>
+        <figcaption>Christian Bonanni (left) and Gabriel Bartlett (right) on the motor solder joints</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="project" id="seadog">
+  <div class="wrap">
+    <div class="proj-head rv">
+      <div class="ttl"><span class="big">02</span><h2>Seadog II</h2></div>
+      <span class="status done">1st place / ECE Demo Day 2025</span>
+    </div>
+    <div class="proj-body">
+      <dl class="specs rv">
+        <div><dt>Team</dt><dd>UConn Electric Boat Racing Team</dd></div>
+        <div><dt>Role</dt><dd>Design team: aerodynamics, prep &amp; paint</dd></div>
+        <div><dt>Result</dt><dd>UConn ECE Demo Day, 1st place, 2025</dd></div>
+        <div><dt>Raced</dt><dd>ASNE PEP competition, spring 2026</dd></div>
+      </dl>
+      <div class="write rv">
+        <p>Seadog II is the electric race boat that took <b>first place at UConn's ECE Demo Day in 2025</b>. I worked with senior engineers on the design team to improve the boat's aerodynamics, then designed, prepped, and painted the hull.</p>
+        <p>Prep and paint is where a lot of a boat's finish quality gets decided. It's slow, it's in a respirator, and you only see the mistakes once the paint is down.</p>
+        <p>Last spring the team built the boat's battery in the shop, wired it in, and took Seadog II to ASNE's <b>Promoting Electric Propulsion</b> competition. Most of race weekend was spent in the pits with the hatches open.</p>
+        <div class="tags"><span class="tag">Aerodynamics</span><span class="tag">Surface prep</span><span class="tag">Painting</span><span class="tag">Composite layup</span></div>
+      </div>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.1 / Team</span>
+        <div class="frame">
+          <img src="../images/team-2026.jpg" width="1600" height="1200" loading="lazy"
+               alt="The UConn Electric Boat Racing Team standing together behind Seadog II at the water's edge">
+        </div>
+        <figcaption>The Electric Boat Racing Team with Seadog II at ASNE PEP, 2026</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.2 / Prep</span>
+        <div class="frame">
+          <img src="../images/respirator-seadog2.jpg" width="720" height="1280" loading="lazy"
+               alt="Gabriel Bartlett in a respirator and safety glasses, with the Seadog II hull behind him in the shop">
+        </div>
+        <figcaption>Respirator and glasses, Seadog II in the shop</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.3 / Pits, ASNE PEP</span>
+        <div class="frame">
+          <img src="../images/pep-pits.jpg" width="1600" height="1205" loading="lazy"
+               alt="Team members crouched around Seadog II on its cart in the competition parking lot, working under the hull">
+        </div>
+        <figcaption>Working under the hull between runs at ASNE PEP</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.4 / Battery build</span>
+        <div class="frame">
+          <img src="../images/seadog-shop-battery.jpg" width="1200" height="1600" loading="lazy"
+               alt="Team members in the shop around Seadog II with the hatches open, a soldering station and tools on the deck">
+        </div>
+        <figcaption>Building and wiring the battery in the shop before PEP</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.5 / Dock</span>
+        <div class="frame">
+          <img src="../images/pep-dock.jpg" width="1600" height="1200" loading="lazy"
+               alt="Team members on a wooden dock at the competition, with a blue hull in the water alongside">
+        </div>
+        <figcaption>On the dock at ASNE PEP, April 2026</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.6 / Pit setup</span>
+        <div class="frame">
+          <img src="../images/pep-cart.jpg" width="900" height="1600" loading="lazy"
+               alt="Seadog II on its wooden launch cart in the competition lot, with toolkits laid out on the deck">
+        </div>
+        <figcaption>Seadog II on the launch cart, tools out</figcaption>
+      </figure>
+    </div>
+    <div class="figs">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.7 / Film</span>
+        <div class="frame video">
+          <iframe src="https://www.youtube-nocookie.com/embed/ip2hr8rALpI"
+                  title="UCONN Electric Boat Racing || The Art of Perseverance"
+                  loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+        </div>
+        <figcaption>The Art of Perseverance, a season with the Electric Boat Racing Team</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="project" id="bigdawg">
+  <div class="wrap">
+    <div class="proj-head rv">
+      <div class="ttl"><span class="big">03</span><h2>Big Dawg I</h2></div>
+      <span class="status done">Complete</span>
+    </div>
+    <div class="proj-body">
+      <dl class="specs rv">
+        <div><dt>Team</dt><dd>UConn Electric Boat Racing Team</dd></div>
+        <div><dt>Role</dt><dd>Hull design team lead</dd></div>
+        <div><dt>Tools</dt><dd>SolidWorks</dd></div>
+      </dl>
+      <div class="write rv">
+        <p>On Big Dawg I, I led the <b>hull design team</b>: taking the hull from concept to a shape the team could build, and keeping the group coordinated while we did it.</p>
+        <div class="tags"><span class="tag">Hull design</span><span class="tag">SolidWorks</span><span class="tag">Team lead</span></div>
+      </div>
+    </div>
+    <div class="figs">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 03.1 / Hull</span>
+        <div class="frame empty"><span>Photos coming</span></div>
+        <figcaption>Big Dawg I hull</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="project" id="copper">
+  <div class="wrap">
+    <div class="proj-head rv">
+      <div class="ttl"><span class="big">04</span><h2>Copper</h2></div>
+      <span class="status wip">Ongoing / Personal build</span>
+    </div>
+    <div class="proj-body">
+      <dl class="specs rv">
+        <div><dt>What</dt><dd>Robot study assistant</dd></div>
+        <div><dt>Role</dt><dd>Solo build</dd></div>
+        <div><dt>Brain</dt><dd>Arduino Uno / Nano</dd></div>
+        <div><dt>Drive</dt><dd>8 micro servos on a PCA9685 16-ch driver</dd></div>
+        <div><dt>Body</dt><dd>3D-printed frame and legs</dd></div>
+        <div><dt>Next</dt><dd>Small custom battery</dd></div>
+      </dl>
+      <div class="write rv">
+        <p>Copper is a <b>small cat robot</b> that keeps you on task while you study. I'm building it to get hands-on with electronic components and to design and 3D print the body in SolidWorks.</p>
+        <p>The body is a printed base plate with four hip servos and four leg assemblies, eight micro servos in total. They all run off a <b>PCA9685 servo driver</b> talking to an Arduino over I²C, with separate DC power for the servos. The firmware takes text commands over serial, so I can test each move from the laptop before it walks on its own.</p>
+        <p>The long-term goal is to design a small-scale <b>custom battery</b> for it.</p>
+        <div class="tags"><span class="tag">Arduino</span><span class="tag">PCA9685 / I²C</span><span class="tag">Servos</span><span class="tag">C++</span><span class="tag">SolidWorks</span><span class="tag">3D printing</span><span class="tag">Battery design</span></div>
+      </div>
+    </div>
+    <div class="figs">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 04.1 / Parts</span>
+        <div class="frame">
+          <img src="../images/copper-parts.jpg" width="1600" height="900" loading="lazy"
+               alt="Copper's blue 3D-printed base plate with four servos mounted, next to four servo leg assemblies, a PCA9685 servo driver board and an Arduino Nano on a workbench">
+        </div>
+        <figcaption>Printed base, leg assemblies, PCA9685 driver and Arduino Nano before assembly</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 04.2 / Wiring</span>
+        <div class="frame">
+          <img src="../images/copper-wired.jpg" width="1600" height="900" loading="lazy"
+               alt="Copper's servos wired to the PCA9685 driver on the base plate, connected to an Elegoo Uno R3 and a laptop over USB, with a DC barrel jack for servo power">
+        </div>
+        <figcaption>First wiring test: servos on the PCA9685, Uno R3 over USB, DC jack for servo power</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 04.3 / Firmware</span>
+        <div class="frame">
+          <img src="../images/copper-firmware.jpg" width="1600" height="900" loading="lazy"
+               alt="Laptop screen showing the Arduino firmware for Copper: setup code for the PCA9685 at 50 Hz and a serial command loop">
+        </div>
+        <figcaption>Firmware: PCA9685 at 50 Hz servo frequency, serial command loop</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow"><b>Sheet 05</b> / Contact</p>
+    <h2>Want to talk<br>about a build?</h2>
+    <p>I'm looking for motorsport and automotive internships, and I'm open to sponsor conversations for the ASNE hydroplane. Email reaches me fastest.</p>
+    <div class="links">
+      <a href="mailto:gabebartlett7125@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/gabrielbartlett/">LinkedIn</a>
+      <a href="https://www.youtube.com/@ebagton">YouTube</a>
+      <a href="../resume.pdf">Resume (PDF)</a>
+      <a href="../">Full portfolio</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Gabriel Bartlett / Builds</footer>
+</div>
+
+<script>
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 55 + 'ms';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
