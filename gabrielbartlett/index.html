@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gabriel Bartlett / Builds</title>
-<meta name="description" content="Project showcase for Gabriel Bartlett, mechanical engineering at UConn: Seadog II, Big Dawg I, the ASNE electric hydroplane, and Copper the study robot.">
+<meta name="description" content="Project showcase for Gabriel Bartlett, mechanical engineering at UConn: the Big Dawg I electric hydrofoil, the Seadog I and II hydroplane, a Jeep Cherokee rebuild, and Copper the study robot.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,13 +13,13 @@
   --paper:#E9EAE5;
   --paper-2:#F4F5F1;
   --ink:#10131C;
-  --ink-soft:#5C6159;
+  --ink-soft:#474C46;
   --line:#C9CCC4;
   --blue:#1B3F94;
   --sky:#79B4E8;
   --red:#C4271F;
-  --grid:rgba(27,63,148,.09);
-  --grid-strong:rgba(27,63,148,.20);
+  --grid:rgba(27,63,148,.045);
+  --grid-strong:rgba(27,63,148,.10);
   --pad:clamp(20px,5vw,72px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -34,7 +34,7 @@ body{
   background-size:140px 140px,140px 140px,28px 28px,28px 28px;
   color:var(--ink);
   font-family:"Archivo",system-ui,sans-serif;
-  font-size:17px;line-height:1.55;
+  font-size:17px;line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit}
@@ -70,13 +70,18 @@ a{color:inherit}
 .hero .wrap{max-width:1400px;margin:0 auto}
 h1{font-family:"Archivo Black",sans-serif;font-size:clamp(2.6rem,8vw,7.2rem);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;margin-top:clamp(18px,3vw,28px)}
 h1 .hl{color:var(--blue)}
-.lede{margin-top:clamp(20px,3vw,32px);max-width:52ch;font-size:clamp(16px,2vw,19px);color:#2A2E36}
+.lede{margin-top:clamp(20px,3vw,32px);max-width:52ch;font-size:clamp(17px,2vw,19px);color:#1A1E26}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:clamp(28px,5vw,64px);align-items:end}
+.logo-frame{background:#fff;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(16,19,28,.12);padding:clamp(14px,2vw,24px);line-height:0}
+.logo-frame img{width:100%;height:auto;display:block}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-grid figure{max-width:320px}}
 
 /* parts list (index table) */
 .parts-wrap{padding:0 var(--pad)}
 .parts{max-width:1400px;margin:0 auto;width:100%;border-collapse:collapse;background:var(--paper-2);border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(16,19,28,.12)}
 .parts caption{text-align:left;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);padding-bottom:10px}
-.parts th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;text-align:left;padding:10px 16px;border-bottom:1.5px solid var(--ink)}
+.parts th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;text-align:left;padding:10px 16px;border-bottom:1.5px solid var(--ink)}
 .parts td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:baseline}
 .parts td.c{font-size:12px;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap}
 .parts td.c.no{color:var(--blue);font-weight:700}
@@ -102,24 +107,26 @@ h2{font-family:"Archivo Black",sans-serif;font-size:clamp(1.8rem,4.6vw,3.4rem);l
 .specs{border:1px solid var(--line);background:var(--paper-2);align-self:start}
 .specs div{display:grid;grid-template-columns:88px 1fr;border-top:1px solid var(--line)}
 .specs div:first-child{border-top:none}
-.specs dt{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px;border-right:1px solid var(--line)}
-.specs dd{font-size:14px;padding:9px 12px;font-weight:500}
-.write p{max-width:64ch;color:#2A2E36;font-size:clamp(16px,1.8vw,18px)}
+.specs dt{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px;border-right:1px solid var(--line)}
+.specs dd{font-size:15px;padding:9px 12px;font-weight:500;color:var(--ink)}
+.write p{max-width:64ch;color:#1A1E26;font-size:clamp(17px,1.8vw,18.5px);line-height:1.65}
 .write p + p{margin-top:14px}
 .write b{color:var(--blue);font-weight:600}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);padding:6px 10px}
+.tag{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);padding:6px 10px}
 
 /* figures */
 .figs{display:grid;gap:clamp(18px,2.6vw,32px);margin-top:clamp(30px,4vw,48px)}
 .figs.two{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:start}
-@media (max-width:760px){.figs.two{grid-template-columns:1fr}}
+.figs.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+.figs.trio{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+@media (max-width:760px){.figs.two,.figs.pair,.figs.trio{grid-template-columns:1fr}}
 .fig-lbl{display:inline-block;margin-bottom:10px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
 .frame{border:1.5px solid var(--ink);background:var(--paper-2);box-shadow:8px 8px 0 rgba(16,19,28,.12);line-height:0;overflow:hidden}
 .frame img{width:100%;height:auto;display:block}
 .frame.video{position:relative;aspect-ratio:16/9;background:var(--ink)}
 .frame.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-figcaption{margin-top:11px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+figcaption{margin-top:11px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
 /* empty drawing frame for photos not added yet */
 .frame.empty{aspect-ratio:16/9;line-height:1.4;display:flex;align-items:center;justify-content:center;
   background:
@@ -159,9 +166,9 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   <div class="row">
     <a href="../" class="eyebrow" style="border:none">← Gabe / Portfolio</a>
     <nav aria-label="Projects">
-      <a href="#hydroplane"><span class="n">01</span>Hydroplane</a>
-      <a href="#seadog"><span class="n">02</span>Seadog II</a>
-      <a href="#bigdawg"><span class="n">03</span>Big Dawg I</a>
+      <a href="#bigdawg"><span class="n">01</span>Big Dawg I</a>
+      <a href="#seadog"><span class="n">02</span>Seadog</a>
+      <a href="#jeep"><span class="n">03</span>Jeep</a>
       <a href="#copper"><span class="n">04</span>Copper</a>
       <a href="#contact"><span class="n">05</span>Contact</a>
     </nav>
@@ -170,10 +177,16 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
 
 <main>
 <div class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+    <div>
     <p class="eyebrow"><b>Gabriel Bartlett</b> / Mechanical Engineering, UConn '28</p>
     <h1>Things I've<br><span class="hl">built.</span></h1>
-    <p class="lede">Boats, a robot, and the parts of engineering you only learn by building. Each project below is laid out like a drawing sheet: what it is, what I did on it, and where it stands now.</p>
+    <p class="lede">Boats, a Jeep, a robot, and the parts of engineering you only learn by building. Each project below is laid out like a drawing sheet: what it is, what I did on it, and where it stands now.</p>
+    </div>
+    <figure class="rv">
+      <span class="fig-lbl">Fig. 00 / Team mark</span>
+      <div class="logo-frame"><img src="../images/ebrc-logo.png" width="900" height="705" alt="UConn Electric Boat Racing Club logo: a white and navy hydroplane with shark-mouth sponsons and a red lightning bolt"></div>
+    </figure>
   </div>
 </div>
 
@@ -184,42 +197,150 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
       <tr><th>No.</th><th>Project</th><th class="hide-sm">My role</th><th>Status</th></tr>
     </thead>
     <tbody>
-      <tr><td class="c no">01</td><td><a href="#hydroplane">Electric hydroplane</a></td><td class="hide-sm">President, EBRT</td><td class="c">In build</td></tr>
-      <tr><td class="c no">02</td><td><a href="#seadog">Seadog II</a></td><td class="hide-sm">Design, prep &amp; paint</td><td class="c">1st place, 2025</td></tr>
-      <tr><td class="c no">03</td><td><a href="#bigdawg">Big Dawg I</a></td><td class="hide-sm">Hull design team lead</td><td class="c">Complete</td></tr>
+      <tr><td class="c no">01</td><td><a href="#bigdawg">Big Dawg I</a></td><td class="hide-sm">President, budget design lead</td><td class="c">In design, 2027</td></tr>
+      <tr><td class="c no">02</td><td><a href="#seadog">Seadog I &amp; II</a></td><td class="hide-sm">Hull design lead</td><td class="c">Retired, 2024&ndash;26</td></tr>
+      <tr><td class="c no">03</td><td><a href="#jeep">Jeep Cherokee</a></td><td class="hide-sm">Owner and mechanic</td><td class="c">Ongoing</td></tr>
       <tr><td class="c no">04</td><td><a href="#copper">Copper</a></td><td class="hide-sm">Solo build</td><td class="c">Ongoing</td></tr>
     </tbody>
   </table>
 </div>
 
 <!-- 01 -->
-<section class="project" id="hydroplane">
+<section class="project" id="bigdawg">
   <div class="wrap">
     <div class="proj-head rv">
-      <div class="ttl"><span class="big">01</span><h2>Electric<br>hydroplane</h2></div>
-      <span class="status live">In build / 2026–27</span>
+      <div class="ttl"><span class="big">01</span><h2>Big Dawg I</h2></div>
+      <span class="status live">In design / 2027 season</span>
+    </div>
+    <div class="proj-body">
+      <dl class="specs rv">
+        <div><dt>Name</dt><dd>Big Dawg I (working name)</dd></div>
+        <div><dt>Type</dt><dd>Electric hydrofoil</dd></div>
+        <div><dt>Team</dt><dd>UConn Electric Boat Racing Team, 20+ members</dd></div>
+        <div><dt>Role</dt><dd>President; leading the budget design team</dd></div>
+        <div><dt>Event</dt><dd>ASNE Promoting Electric Propulsion (PEP)</dd></div>
+        <div><dt>Build</dt><dd>In-house: SolidWorks, laser cutting, 3D printing</dd></div>
+      </dl>
+      <div class="write rv">
+        <p>After two seasons on the Seadog hydroplane, we're retiring it. The next boat is an <b>electric hydrofoil</b> for the 2027 season of the American Society of Naval Engineers' <b>Promoting Electric Propulsion</b> competition. Big Dawg I is the working name.</p>
+        <p>The hull is modeled in <b>SolidWorks</b> and will be built entirely in-house, with laser-cut and 3D-printed parts. I'm leading the budget design team on it: a narrow forward hull with a raised canopy, and wings that sit below it.</p>
+        <p>As president, my goal is to put members on real engineering work while they're still in school: hulls, powertrains, and the failures in between.</p>
+        <div class="tags"><span class="tag">Hydrofoil</span><span class="tag">Hull design</span><span class="tag">SolidWorks</span><span class="tag">Laser cutting</span><span class="tag">3D printing</span><span class="tag">Team leadership</span></div>
+      </div>
+    </div>
+    <div class="figs">
+      <figure class="rv" style="max-width:995px">
+        <span class="fig-lbl">Fig. 01.1 / CAD</span>
+        <div class="frame"><img src="../images/bigdawg-cad.jpg" width="995" height="657" loading="lazy" alt="SolidWorks model of the Big Dawg I hull: a long pointed grey hull with a domed canopy and two wings below it, the starboard wing labelled Wing_Stbd"></div>
+        <figcaption>Big Dawg I in SolidWorks, starboard wing selected</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="project" id="seadog">
+  <div class="wrap">
+    <div class="proj-head rv">
+      <div class="ttl"><span class="big">02</span><h2>Seadog I &amp; II</h2></div>
+      <span class="status done">Retired / 2024&ndash;2026</span>
     </div>
     <div class="proj-body">
       <dl class="specs rv">
         <div><dt>Team</dt><dd>UConn Electric Boat Racing Team</dd></div>
-        <div><dt>Role</dt><dd>President</dd></div>
-        <div><dt>Event</dt><dd>ASNE Promoting Electric Propulsion (PEP)</dd></div>
-        <div><dt>Type</dt><dd>Electric hydroplane</dd></div>
+        <div><dt>Role</dt><dd>Hull design lead</dd></div>
+        <div><dt>Hull</dt><dd>Donated 8.5 ft plywood hydroplane</dd></div>
+        <div><dt>Battery</dt><dd>13S56P Li-ion, 728 &times; 18650 cells</dd></div>
+        <div><dt>Limit</dt><dd>55.5 V race pack voltage</dd></div>
+        <div><dt>Results</dt><dd>Seadog I: ECE Demo Day 1st, 2025. Seadog II: raced ASNE PEP, 2026</dd></div>
       </dl>
       <div class="write rv">
-        <p>The team's current build is an <b>electric hydroplane</b> for the American Society of Naval Engineers' <b>Promoting Electric Propulsion</b> competition. The race exists to speed up research into electric propulsion in an industry that still runs on gas.</p>
-        <p>As president, my goal for this year is to put members on real engineering work while they're still in school: hulls, powertrains, and the failures in between.</p>
-        <div class="tags"><span class="tag">Electric propulsion</span><span class="tag">Composites</span><span class="tag">Powertrain</span><span class="tag">Team leadership</span></div>
+        <p>Seadog was the team's electric hydroplane for two seasons, built on a <b>donated 8.5 ft plywood hydroplane hull</b>. I led hull design on it both seasons: modeling modifications in SolidWorks, cutting out and replacing hull sections, and refinishing it from bare wood in epoxy and paint each year.</p>
+        <p><b>Seadog I</b> (2025) got the electric powertrain integrated into the hull and took <b>first place at UConn's ECE Demo Day in 2025</b>.</p>
+        <p>For <b>Seadog II</b> (2026) I joined the battery team spot welding a custom <b>13S56P lithium-ion pack</b>: 728 18650 cells, built to stay inside the 55.5 V race limit. Then we took Seadog II to ASNE's <b>Promoting Electric Propulsion</b> competition, where most of race weekend was spent in the pits with the hatches open. After that season we retired the hull to make way for Big Dawg I.</p>
+        <div class="tags"><span class="tag">Hull design</span><span class="tag">SolidWorks</span><span class="tag">Epoxy &amp; paint</span><span class="tag">Spot welding</span><span class="tag">Li-ion battery packs</span></div>
       </div>
+    </div>
+    <div class="figs pair">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.1 / On the water</span>
+        <div class="frame"><img src="../images/seadog-water-side.jpg" width="1079" height="621" loading="lazy" alt="Seadog II running on open water, blue and white UConn livery with Sea Dog II on the hull, spray off the stern"></div>
+        <figcaption>Seadog II under power</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.2 / Head on</span>
+        <div class="frame"><img src="../images/seadog-water-front.jpg" width="918" height="527" loading="lazy" alt="Seadog II approaching head on across the water, sponsons and canopy visible, wake curling behind"></div>
+        <figcaption>Seadog II coming in, wake behind</figcaption>
+      </figure>
     </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 01.1 / Hull</span>
-        <div class="frame empty"><span>Build photos coming</span></div>
-        <figcaption>Hydroplane hull, in progress</figcaption>
+        <span class="fig-lbl">Fig. 02.3 / Team</span>
+        <div class="frame">
+          <img src="../images/team-2026.jpg" width="1600" height="1200" loading="lazy"
+               alt="The UConn Electric Boat Racing Team standing together behind Seadog II at the water's edge">
+        </div>
+        <figcaption>The Electric Boat Racing Team with Seadog II at ASNE PEP, 2026</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 01.2 / Shop</span>
+        <span class="fig-lbl">Fig. 02.4 / Prep</span>
+        <div class="frame">
+          <img src="../images/respirator-seadog2.jpg" width="720" height="1280" loading="lazy"
+               alt="Gabriel Bartlett in a respirator and safety glasses, with the Seadog II hull behind him in the shop">
+        </div>
+        <figcaption>Respirator and glasses, Seadog II in the shop</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.5 / Pits, ASNE PEP</span>
+        <div class="frame">
+          <img src="../images/pep-pits.jpg" width="1600" height="1205" loading="lazy"
+               alt="Team members crouched around Seadog II on its cart in the competition parking lot, working under the hull">
+        </div>
+        <figcaption>Working under the hull between runs at ASNE PEP</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.6 / Battery build</span>
+        <div class="frame">
+          <img src="../images/seadog-shop-battery.jpg" width="1200" height="1600" loading="lazy"
+               alt="Team members in the shop around Seadog II with the hatches open, a soldering station and tools on the deck">
+        </div>
+        <figcaption>Wiring the battery into the hull in the shop before PEP</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.7 / Dock</span>
+        <div class="frame">
+          <img src="../images/pep-dock.jpg" width="1600" height="1200" loading="lazy"
+               alt="Team members on a wooden dock at the competition, with a blue hull in the water alongside">
+        </div>
+        <figcaption>On the dock at ASNE PEP, April 2026</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.8 / Pit setup</span>
+        <div class="frame">
+          <img src="../images/pep-cart.jpg" width="900" height="1600" loading="lazy"
+               alt="Seadog II on its wooden launch cart in the competition lot, with toolkits laid out on the deck">
+        </div>
+        <figcaption>Seadog II on the launch cart, tools out</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.9 / Film</span>
+        <div class="frame video">
+          <iframe src="https://www.youtube-nocookie.com/embed/ip2hr8rALpI"
+                  title="UCONN Electric Boat Racing || The Art of Perseverance"
+                  loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+        </div>
+        <figcaption>The Art of Perseverance, a season with the Electric Boat Racing Team</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 02.10 / Powertrain</span>
         <div class="frame">
           <img src="../images/motor-solder.jpg" width="1200" height="1600" loading="lazy"
                alt="Two students working on motor solder joints on the boat in the shop">
@@ -230,120 +351,79 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   </div>
 </section>
 
-<!-- 02 -->
-<section class="project" id="seadog">
+<!-- 03 -->
+<section class="project" id="jeep">
   <div class="wrap">
     <div class="proj-head rv">
-      <div class="ttl"><span class="big">02</span><h2>Seadog II</h2></div>
-      <span class="status done">1st place / ECE Demo Day 2025</span>
+      <div class="ttl"><span class="big">03</span><h2>Jeep Cherokee</h2></div>
+      <span class="status wip">Ongoing / Driveway build</span>
     </div>
     <div class="proj-body">
       <dl class="specs rv">
-        <div><dt>Team</dt><dd>UConn Electric Boat Racing Team</dd></div>
-        <div><dt>Role</dt><dd>Design team: aerodynamics, prep &amp; paint</dd></div>
-        <div><dt>Result</dt><dd>UConn ECE Demo Day, 1st place, 2025</dd></div>
-        <div><dt>Raced</dt><dd>ASNE PEP competition, spring 2026</dd></div>
+        <div><dt>Vehicle</dt><dd>Jeep Cherokee (XJ), green with black interior</dd></div>
+        <div><dt>Role</dt><dd>Owner and mechanic, with friends</dd></div>
+        <div><dt>Work</dt><dd>Brakes, rear suspension, rust repair, interior teardown</dd></div>
+        <div><dt>Where</dt><dd>On jack stands in the driveway</dd></div>
+        <div><dt>Film</dt><dd>How to *NOT* Build a Car</dd></div>
       </dl>
       <div class="write rv">
-        <p>Seadog II is the electric race boat that took <b>first place at UConn's ECE Demo Day in 2025</b>. I worked with senior engineers on the design team to improve the boat's aerodynamics, then designed, prepped, and painted the hull.</p>
-        <p>Prep and paint is where a lot of a boat's finish quality gets decided. It's slow, it's in a respirator, and you only see the mistakes once the paint is down.</p>
-        <p>Last spring the team built the boat's battery in the shop, wired it in, and took Seadog II to ASNE's <b>Promoting Electric Propulsion</b> competition. Most of race weekend was spent in the pits with the hatches open.</p>
-        <div class="tags"><span class="tag">Aerodynamics</span><span class="tag">Surface prep</span><span class="tag">Painting</span><span class="tag">Composite layup</span></div>
+        <p>An old <b>Jeep Cherokee XJ</b> that I'm rebuilding in the driveway with friends, on a student budget and a floor jack. So far that has meant the <b>front brakes</b>, getting into the <b>rear leaf-spring suspension</b>, and cutting into the <b>rust in the rockers and quarter panels</b> to see how far it goes. The interior came out too: seats, carpet and the steering column, down to the bare floor pan.</p>
+        <p>Old hardware rarely comes apart the way the manual says. Most of the work so far has been heat, penetrating oil, and longer breaker bars. The film is about what went wrong and what I'd do differently next time.</p>
+        <div class="tags"><span class="tag">Brakes</span><span class="tag">Suspension</span><span class="tag">Rust repair</span><span class="tag">Metal cutting</span><span class="tag">Interior teardown</span><span class="tag">Automotive</span></div>
       </div>
     </div>
-    <div class="figs two">
+    <div class="figs pair">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.1 / Team</span>
-        <div class="frame">
-          <img src="../images/team-2026.jpg" width="1600" height="1200" loading="lazy"
-               alt="The UConn Electric Boat Racing Team standing together behind Seadog II at the water's edge">
-        </div>
-        <figcaption>The Electric Boat Racing Team with Seadog II at ASNE PEP, 2026</figcaption>
+        <span class="fig-lbl">Fig. 03.1 / Front brakes</span>
+        <div class="frame"><img src="../images/jeep-brakes.jpg" width="1600" height="900" loading="lazy" alt="Gabriel in nitrile gloves fitting a new brake rotor on the Jeep's front hub while a friend watches"></div>
+        <figcaption>Fitting a new front rotor</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.2 / Prep</span>
-        <div class="frame">
-          <img src="../images/respirator-seadog2.jpg" width="720" height="1280" loading="lazy"
-               alt="Gabriel Bartlett in a respirator and safety glasses, with the Seadog II hull behind him in the shop">
-        </div>
-        <figcaption>Respirator and glasses, Seadog II in the shop</figcaption>
+        <span class="fig-lbl">Fig. 03.2 / Heat</span>
+        <div class="frame"><img src="../images/jeep-torch.jpg" width="1600" height="900" loading="lazy" alt="Gabriel using a handheld torch on seized hardware at the rear leaf spring, the Jeep on a floor jack and jack stand"></div>
+        <figcaption>Heating seized hardware at the rear leaf spring</figcaption>
       </figure>
     </div>
-    <div class="figs two">
+    <div class="figs trio">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.3 / Pits, ASNE PEP</span>
-        <div class="frame">
-          <img src="../images/pep-pits.jpg" width="1600" height="1205" loading="lazy"
-               alt="Team members crouched around Seadog II on its cart in the competition parking lot, working under the hull">
-        </div>
-        <figcaption>Working under the hull between runs at ASNE PEP</figcaption>
+        <span class="fig-lbl">Fig. 03.3 / Strip</span>
+        <div class="frame"><img src="../images/jeep-interior.jpg" width="1400" height="788" loading="lazy" alt="Gabriel sitting in the stripped-out Jeep with a shop vac on the bare rear floor"></div>
+        <figcaption>Carpet out, shop vac in</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.4 / Battery build</span>
-        <div class="frame">
-          <img src="../images/seadog-shop-battery.jpg" width="1200" height="1600" loading="lazy"
-               alt="Team members in the shop around Seadog II with the hatches open, a soldering station and tools on the deck">
-        </div>
-        <figcaption>Building and wiring the battery in the shop before PEP</figcaption>
+        <span class="fig-lbl">Fig. 03.4 / Steering</span>
+        <div class="frame"><img src="../images/jeep-steering.jpg" width="1400" height="788" loading="lazy" alt="Three friends in the driveway working on the Jeep's removed steering column and wheel on a bench"></div>
+        <figcaption>Steering column out on the bench</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 03.5 / Floor</span>
+        <div class="frame"><img src="../images/jeep-floor.jpg" width="1400" height="788" loading="lazy" alt="Inside the Jeep with the carpet removed, rust visible on the rear floor pan"></div>
+        <figcaption>Rust on the bare rear floor pan</figcaption>
       </figure>
     </div>
-    <div class="figs two">
+    <div class="figs pair">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.5 / Dock</span>
-        <div class="frame">
-          <img src="../images/pep-dock.jpg" width="1600" height="1200" loading="lazy"
-               alt="Team members on a wooden dock at the competition, with a blue hull in the water alongside">
-        </div>
-        <figcaption>On the dock at ASNE PEP, April 2026</figcaption>
+        <span class="fig-lbl">Fig. 03.6 / Leverage</span>
+        <div class="frame"><img src="../images/jeep-side.jpg" width="1600" height="900" loading="lazy" alt="Gabriel leaning on a long steel bar against the green Jeep, rear wheel off and the rusted quarter panel exposed"></div>
+        <figcaption>Rear wheel off, quarter panel rust exposed</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 02.6 / Pit setup</span>
-        <div class="frame">
-          <img src="../images/pep-cart.jpg" width="900" height="1600" loading="lazy"
-               alt="Seadog II on its wooden launch cart in the competition lot, with toolkits laid out on the deck">
-        </div>
-        <figcaption>Seadog II on the launch cart, tools out</figcaption>
+        <span class="fig-lbl">Fig. 03.7 / Front floor</span>
+        <div class="frame"><img src="../images/jeep-floor-front.jpg" width="1400" height="788" loading="lazy" alt="A friend with a mallet and chisel knocking old sound deadener and rust scale off the Jeep's front passenger floor pan, carpet and seat removed"></div>
+        <figcaption>Knocking old deadener and rust scale off the front floor pan</figcaption>
       </figure>
     </div>
     <div class="figs">
-      <figure class="rv">
-        <span class="fig-lbl">Fig. 02.7 / Film</span>
+      <figure class="rv" style="max-width:995px">
+        <span class="fig-lbl">Fig. 03.8 / Film</span>
         <div class="frame video">
-          <iframe src="https://www.youtube-nocookie.com/embed/ip2hr8rALpI"
-                  title="UCONN Electric Boat Racing || The Art of Perseverance"
+          <iframe src="https://www.youtube-nocookie.com/embed/xaAOi1GesSI"
+                  title="How to NOT build a car"
                   loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen></iframe>
         </div>
-        <figcaption>The Art of Perseverance, a season with the Electric Boat Racing Team</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- 03 -->
-<section class="project" id="bigdawg">
-  <div class="wrap">
-    <div class="proj-head rv">
-      <div class="ttl"><span class="big">03</span><h2>Big Dawg I</h2></div>
-      <span class="status done">Complete</span>
-    </div>
-    <div class="proj-body">
-      <dl class="specs rv">
-        <div><dt>Team</dt><dd>UConn Electric Boat Racing Team</dd></div>
-        <div><dt>Role</dt><dd>Hull design team lead</dd></div>
-        <div><dt>Tools</dt><dd>SolidWorks</dd></div>
-      </dl>
-      <div class="write rv">
-        <p>On Big Dawg I, I led the <b>hull design team</b>: taking the hull from concept to a shape the team could build, and keeping the group coordinated while we did it.</p>
-        <div class="tags"><span class="tag">Hull design</span><span class="tag">SolidWorks</span><span class="tag">Team lead</span></div>
-      </div>
-    </div>
-    <div class="figs">
-      <figure class="rv">
-        <span class="fig-lbl">Fig. 03.1 / Hull</span>
-        <div class="frame empty"><span>Photos coming</span></div>
-        <figcaption>Big Dawg I hull</figcaption>
+        <figcaption>How to *NOT* Build a Car, the full story</figcaption>
       </figure>
     </div>
   </div>
@@ -372,7 +452,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <div class="tags"><span class="tag">Arduino</span><span class="tag">PCA9685 / I²C</span><span class="tag">Servos</span><span class="tag">C++</span><span class="tag">SolidWorks</span><span class="tag">3D printing</span><span class="tag">Battery design</span></div>
       </div>
     </div>
-    <div class="figs">
+    <div class="figs two">
       <figure class="rv">
         <span class="fig-lbl">Fig. 04.1 / Parts</span>
         <div class="frame">
@@ -381,10 +461,15 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         </div>
         <figcaption>Printed base, leg assemblies, PCA9685 driver and Arduino Nano before assembly</figcaption>
       </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 04.2 / Assembled</span>
+        <div class="frame"><img src="../images/copper-assembled.jpg" width="1125" height="1500" loading="lazy" alt="Copper assembled: the blue 3D-printed four-legged body with servos on every leg, wiring bundled on top, sitting on a wooden workbench"></div>
+        <figcaption>All four legs on, wiring still to tidy</figcaption>
+      </figure>
     </div>
     <div class="figs two">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 04.2 / Wiring</span>
+        <span class="fig-lbl">Fig. 04.3 / Wiring</span>
         <div class="frame">
           <img src="../images/copper-wired.jpg" width="1600" height="900" loading="lazy"
                alt="Copper's servos wired to the PCA9685 driver on the base plate, connected to an Elegoo Uno R3 and a laptop over USB, with a DC barrel jack for servo power">
@@ -392,7 +477,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
         <figcaption>First wiring test: servos on the PCA9685, Uno R3 over USB, DC jack for servo power</figcaption>
       </figure>
       <figure class="rv">
-        <span class="fig-lbl">Fig. 04.3 / Firmware</span>
+        <span class="fig-lbl">Fig. 04.4 / Firmware</span>
         <div class="frame">
           <img src="../images/copper-firmware.jpg" width="1600" height="900" loading="lazy"
                alt="Laptop screen showing the Arduino firmware for Copper: setup code for the PCA9685 at 50 Hz and a serial command loop">
@@ -407,7 +492,7 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
   <div class="wrap">
     <p class="eyebrow"><b>Sheet 05</b> / Contact</p>
     <h2>Want to talk<br>about a build?</h2>
-    <p>I'm looking for motorsport and automotive internships, and I'm open to sponsor conversations for the ASNE hydroplane. Email reaches me fastest.</p>
+    <p>I'm looking for motorsport and automotive internships, and I'm open to sponsor conversations for the Big Dawg I hydrofoil. Email reaches me fastest.</p>
     <div class="links">
       <a href="mailto:gabebartlett7125@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/gabrielbartlett/">LinkedIn</a>
