@@ -323,20 +323,44 @@ footer{padding:20px var(--pad);background:var(--ink);color:#6E746C;font-family:"
       <dl class="specs rv">
         <div><dt>What</dt><dd>Robot study assistant</dd></div>
         <div><dt>Role</dt><dd>Solo build</dd></div>
-        <div><dt>Tools</dt><dd>SolidWorks, 3D printing, soldering</dd></div>
+        <div><dt>Brain</dt><dd>Arduino Uno / Nano</dd></div>
+        <div><dt>Drive</dt><dd>8 micro servos on a PCA9685 16-ch driver</dd></div>
+        <div><dt>Body</dt><dd>3D-printed frame and legs</dd></div>
         <div><dt>Next</dt><dd>Small custom battery</dd></div>
       </dl>
       <div class="write rv">
         <p>Copper is a <b>small cat robot</b> that keeps you on task while you study. I'm building it to get hands-on with electronic components and to design and 3D print the body in SolidWorks.</p>
+        <p>The body is a printed base plate with four hip servos and four leg assemblies, eight micro servos in total. They all run off a <b>PCA9685 servo driver</b> talking to an Arduino over I²C, with separate DC power for the servos. The firmware takes text commands over serial, so I can test each move from the laptop before it walks on its own.</p>
         <p>The long-term goal is to design a small-scale <b>custom battery</b> for it.</p>
-        <div class="tags"><span class="tag">Electronics</span><span class="tag">SolidWorks</span><span class="tag">3D printing</span><span class="tag">Battery design</span></div>
+        <div class="tags"><span class="tag">Arduino</span><span class="tag">PCA9685 / I²C</span><span class="tag">Servos</span><span class="tag">C++</span><span class="tag">SolidWorks</span><span class="tag">3D printing</span><span class="tag">Battery design</span></div>
       </div>
     </div>
     <div class="figs">
       <figure class="rv">
-        <span class="fig-lbl">Fig. 04.1 / Prototype</span>
-        <div class="frame empty"><span>Photos coming</span></div>
-        <figcaption>Copper, prototype</figcaption>
+        <span class="fig-lbl">Fig. 04.1 / Parts</span>
+        <div class="frame">
+          <img src="../images/copper-parts.jpg" width="1600" height="900" loading="lazy"
+               alt="Copper's blue 3D-printed base plate with four servos mounted, next to four servo leg assemblies, a PCA9685 servo driver board and an Arduino Nano on a workbench">
+        </div>
+        <figcaption>Printed base, leg assemblies, PCA9685 driver and Arduino Nano before assembly</figcaption>
+      </figure>
+    </div>
+    <div class="figs two">
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 04.2 / Wiring</span>
+        <div class="frame">
+          <img src="../images/copper-wired.jpg" width="1600" height="900" loading="lazy"
+               alt="Copper's servos wired to the PCA9685 driver on the base plate, connected to an Elegoo Uno R3 and a laptop over USB, with a DC barrel jack for servo power">
+        </div>
+        <figcaption>First wiring test: servos on the PCA9685, Uno R3 over USB, DC jack for servo power</figcaption>
+      </figure>
+      <figure class="rv">
+        <span class="fig-lbl">Fig. 04.3 / Firmware</span>
+        <div class="frame">
+          <img src="../images/copper-firmware.jpg" width="1600" height="900" loading="lazy"
+               alt="Laptop screen showing the Arduino firmware for Copper: setup code for the PCA9685 at 50 Hz and a serial command loop">
+        </div>
+        <figcaption>Firmware: PCA9685 at 50 Hz servo frequency, serial command loop</figcaption>
       </figure>
     </div>
   </div>
